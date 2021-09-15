@@ -15,6 +15,7 @@ import {
   StatusBar,
   StyleSheet,
   Text,
+  Button,
   useColorScheme,
   View,
 } from 'react-native';
@@ -27,7 +28,7 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-import Counter from './components/Counter'
+import Counter from '../components/Counter'
 
 const Section: React.FC<{
   title: string;
@@ -57,7 +58,7 @@ const Section: React.FC<{
   );
 };
 
-const PetApp = () => {
+const Home = (navigation) => {
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
@@ -72,6 +73,12 @@ const PetApp = () => {
         style={backgroundStyle}>
         <Header />
         <Counter />
+        <Button
+          title="Go to Jane's profile"
+          onPress={() =>
+            navigation.navigate('Profile', { name: 'Jane' })
+          }
+        />
         <View
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
@@ -115,4 +122,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default PetApp;
+export default Home;
