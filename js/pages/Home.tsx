@@ -10,19 +10,27 @@ const Tab = createBottomTabNavigator();
 
 const Home = ({ navigation }) => {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator
+      initialRouteName='WhatNew'
+      screenOptions={{}}
+    >
       <Tab.Screen
-        name="WhatNew"
+        name='WhatNew'
         component={WhatNew}
       />
       <Tab.Screen
-        name="Notification"
+        name='Notification'
         component={Notifications}
-        options={{ tabBarBadge: 3 }}
+        options={{
+          tabBarBadge: 3
+        }}
       />
       <Tab.Screen
-        name="Profile"
+        name='Profile'
         component={Profile}
+        options={{
+          headerShown: false
+        }}
       />
     </Tab.Navigator>
   )

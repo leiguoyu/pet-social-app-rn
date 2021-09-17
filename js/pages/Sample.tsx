@@ -8,9 +8,8 @@
  * @format
  */
 
-import React from 'react';
+import * as React from 'react';
 import {
-  SafeAreaView,
   ScrollView,
   StatusBar,
   StyleSheet,
@@ -19,7 +18,7 @@ import {
   useColorScheme,
   View,
 } from 'react-native';
-
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import {
   Colors,
   DebugInstructions,
@@ -58,15 +57,21 @@ const Section: React.FC<{
   );
 };
 
-const Home = ({ navigation }) => {
+const Sample = ({ navigation }) => {
   const isDarkMode = useColorScheme() === 'dark';
 
+  // 使用安全区域padding
+  const insets = useSafeAreaInsets();
+
   const backgroundStyle = {
+    paddingTop: insets.top,
+    paddingBottom: insets.bottom,
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
+  // SafeAreaView 防止被遮挡 edges 防止横屏被遮挡
   return (
-    <SafeAreaView style={backgroundStyle}>
+    <SafeAreaView style={backgroundStyle} edges={['top', 'left', 'right']}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
@@ -129,4 +134,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Home;
+export default Sample;
