@@ -16,6 +16,11 @@ enum HttpMethod {
     put = 'PUT',
 }
 
+interface option {
+    url: string,
+    data?: object
+}
+
 const os: any = Platform.OS;
 
 // 请求拦截器配置
@@ -42,12 +47,12 @@ function parseJSON(response: any) {
     return response.json()
 }
 
-async function get<P>(url: string, params: object): Promise<P> {
-    if (params) {
-        url += `?${queryString.stringify(params)}`
+function get<P>(options:option): Promise<P> {
+    if (options.data) {
+        options.url += `?${queryString.stringify(options.data)}`
     }
     try {
-        return fetchInterceptor.c_fetch(url, {
+        return fetchInterceptor.c_fetch(options.url, {
             method: HttpMethod.get,
             headers: {
                 'UserAgent': os
@@ -61,7 +66,7 @@ async function get<P>(url: string, params: object): Promise<P> {
 
 }
 
-function post<P>(url: string, body: object): Promise<P> {
+function post<P>(options:option): Promise<P> {
     let fetch_options = {
         method: HttpMethod.post,
         headers: {
@@ -69,16 +74,16 @@ function post<P>(url: string, body: object): Promise<P> {
             'Content-Type': 'application/json',
             'UserAgent': os
         },
-        body: JSON.stringify(body)
+        body: JSON.stringify(options.data)
     }
-    return fetchInterceptor.c_fetch(url, fetch_options)
+    return fetchInterceptor.c_fetch(options.url, fetch_options)
         .then<P>(checkStatus)
         .then<P>(parseJSON)
 }
 
-function del<P>(url: string, params: object): Promise<P> {
-    if (params) {
-        url += `?${queryString.stringify(params)}`
+function del<P>(options:option): Promise<P> {
+    if (options.data) {
+        options.url += `?${queryString.stringify(options.data)}`
     }
     let fetch_options = {
         method: HttpMethod.del,
@@ -88,12 +93,12 @@ function del<P>(url: string, params: object): Promise<P> {
             'UserAgent': os
         }
     }
-    return fetch(url, fetch_options)
+    return fetch(options.url, fetch_options)
         .then<P>(checkStatus)
         .then<P>(parseJSON)
 }
 
-function update<P>(url: string, body: object): Promise<P> {
+function update<P>(options:option): Promise<P> {
     let fetch_options = {
         method: HttpMethod.put,
         headers: {
@@ -101,9 +106,9 @@ function update<P>(url: string, body: object): Promise<P> {
             'Content-Type': 'application/json',
             'UserAgent': os
         },
-        body: JSON.stringify(body)
+        body: JSON.stringify(options.data)
     }
-    return fetch(url, fetch_options)
+    return fetch(options.url, fetch_options)
         .then<P>(checkStatus)
         .then<P>(parseJSON)
 }
