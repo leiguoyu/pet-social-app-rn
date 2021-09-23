@@ -1,6 +1,10 @@
+import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { routersConfig } from '../config/router';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import Home from '../pages/Home';
+import Sample from '../pages/Sample';
+import SampleDetails from '../pages/SampleDetails';
 
 
 
@@ -9,7 +13,7 @@ const Stack = createNativeStackNavigator();
 const StackNavigator = () => {
     return (
         <Stack.Navigator
-            initialRouteName="Home"
+            initialRouteName='Home'
             screenOptions={{
                 headerStyle: {
                     backgroundColor: '#fff',
@@ -22,26 +26,39 @@ const StackNavigator = () => {
                 headerShown: false
             }}
         >
-            {Object.keys(routersConfig).map((key, i) => {
-                const item = routersConfig[key];
-                return (
-                    <Stack.Screen
-                        name={item.name}
-                        component={item.component}
-                        options={item.options}
-                        key={`${i}`}
-                    />
-                );
-            })}
+            <Stack.Screen
+                name='Home'
+                component={Home}
+                options={{
+                    title: 'Home',
+                    headerShown: false
+                }}
+            />
+            <Stack.Screen
+                name='Sample'
+                component={Sample}
+                options={{
+                    title: 'Sample'
+                }}
+            />
+            <Stack.Screen
+                name='SampleDetails'
+                component={SampleDetails}
+                options={{
+                    title: 'SampleDetails'
+                }}
+            />
         </Stack.Navigator>
     );
 }
 
 const AppNavigator = () => {
     return (
-        <NavigationContainer>
-            <StackNavigator />
-        </NavigationContainer>
+        <SafeAreaProvider>
+            <NavigationContainer>
+                <StackNavigator />
+            </NavigationContainer>
+        </SafeAreaProvider>
     );
 };
 

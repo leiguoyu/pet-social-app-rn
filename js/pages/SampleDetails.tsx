@@ -1,13 +1,26 @@
 import * as React from 'react';
 import { View, Text, Button } from 'react-native';
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 
 
 
 const SampleDetails = ({ route, navigation }) => {
   /* 2. Get the param */
   const { itemId, otherParam } = route.params;
+
+  const insets = useSafeAreaInsets();
+
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+    <SafeAreaView
+      style={{
+        paddingTop: insets.top,
+        paddingBottom: insets.bottom,
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center'
+      }}
+      edges={['top', 'left', 'right']}
+    >
       <Text>Details Screen</Text>
       <Text>itemId: {JSON.stringify(itemId)}</Text>
       <Text>otherParam: {JSON.stringify(otherParam)}</Text>
@@ -30,7 +43,7 @@ const SampleDetails = ({ route, navigation }) => {
         title="Go back to first screen in stack"
         onPress={() => navigation.popToTop()}
       />
-    </View>
+    </SafeAreaView>
   )
 }
 
