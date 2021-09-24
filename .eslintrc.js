@@ -47,9 +47,6 @@ module.exports = {
         after: true,
       },
     ],
-    // 禁止出现空函数，但是空函数中如果有一行注释可以被通过
-    // eslint-disable-next-line no-undef
-    'no-empty-function': [2, {allow: ['functions', 'arrowFunctions']}],
     //禁止无用的表达式
     'no-unused-expressions': [
       2,
