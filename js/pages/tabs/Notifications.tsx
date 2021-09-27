@@ -1,29 +1,22 @@
 import * as React from 'react';
-import { Text, View } from 'react-native';
-import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
+import {Text, StyleSheet} from 'react-native';
+import {SafeAreaView} from 'react-native-safe-area-context';
 
+const Notifications = () => (
+  <SafeAreaView style={styles.container} edges={['top', 'left', 'right']}>
+    <Text>Notifications</Text>
+  </SafeAreaView>
+);
 
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    padding: 10,
+    backgroundColor: '#F5FCFF',
+  },
+});
 
-const WhatNew = () => {
-
-    const insets = useSafeAreaInsets();
-
-    return (
-        <SafeAreaView
-            style={{
-                paddingTop: insets.top,
-                paddingBottom: insets.bottom,
-                flex: 1,
-                justifyContent: 'center',
-                alignItems: 'center'
-            }}
-            edges={['top', 'left', 'right']}
-        >
-            <Text>Notifications</Text>
-        </SafeAreaView>
-    );
-}
-
-
-
-export default WhatNew;
+export default Notifications;

@@ -1,13 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * Generated with the TypeScript template
- * https://github.com/react-native-community/react-native-template-typescript
- *
- * @format
- */
-
 import * as React from 'react';
 import {
   ScrollView,
@@ -16,48 +6,13 @@ import {
   Text,
   Button,
   useColorScheme,
-  View,
 } from 'react-native';
-import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+import {SafeAreaView, useSafeAreaInsets} from 'react-native-safe-area-context';
+import {Colors} from 'react-native/Libraries/NewAppScreen';
 
-import Counter from '../components/Counter'
+import Counter from '../components/Counter';
 
-const Section: React.FC<{
-  title: string;
-}> = ({ children, title }) => {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-};
-
-const Sample = ({ navigation }) => {
+const Sample = ({navigation}) => {
   const isDarkMode = useColorScheme() === 'dark';
 
   // 使用安全区域padding
@@ -69,14 +24,11 @@ const Sample = ({ navigation }) => {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
-  // SafeAreaView 防止被遮挡 edges 防止横屏被遮挡
+  // SafeAreaView 防止被遮挡, edges 防止横屏被遮挡
   return (
     <SafeAreaView style={backgroundStyle} edges={['top', 'left', 'right']}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        {/* <Header /> */}
+      <ScrollView contentInsetAdjustmentBehavior="automatic">
         <Text style={styles.sectionContainer}>Hello Redux</Text>
         <Counter />
         <Text style={styles.sectionContainer}>Hello React Navigation</Text>
@@ -91,25 +43,6 @@ const Sample = ({ navigation }) => {
             });
           }}
         />
-        {/* <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View> */}
       </ScrollView>
     </SafeAreaView>
   );
