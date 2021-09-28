@@ -1,8 +1,10 @@
+import 'react-native-gesture-handler';
 import React from 'react';
 import {Provider} from 'react-redux';
 import store from './js/redux/store';
 import AppNavigator from './js/navigation/AppNavigator';
 import {api} from '~/js/api';
+import './js/config/theme';
 
 debugger;
 api.user.getUserInfo((data: any) => {
