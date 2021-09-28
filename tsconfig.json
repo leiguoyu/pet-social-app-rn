@@ -38,8 +38,8 @@
     /* Module Resolution Options */
     "baseUrl": ".",
     "paths": {
-        "@/*": [
-            "./js/*"
+        "~/*": [
+            "./*"
         ]
     },
     "moduleResolution": "node",               /* Specify module resolution strategy: 'node' (Node.js) or 'classic' (TypeScript pre-1.6). */

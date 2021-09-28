@@ -1,4 +1,4 @@
-import http from '@/utils/http';
+import http from '~/js/utils/http';
 
 let getUserInfo, updateUserInfo, addUserInfo, delUserInfo;
 
