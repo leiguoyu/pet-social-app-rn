@@ -2,6 +2,7 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
+import Login from '../pages/login/Login';
 import Home from '../pages/Home';
 import Sample from '../pages/Sample';
 import SampleDetails from '../pages/SampleDetails';
@@ -10,7 +11,7 @@ const Stack = createNativeStackNavigator();
 
 const StackNavigator = () => (
   <Stack.Navigator
-    initialRouteName="Home"
+    initialRouteName="Login"
     screenOptions={{
       headerStyle: {
         backgroundColor: '#fff',
@@ -22,6 +23,14 @@ const StackNavigator = () => (
       },
       headerShown: false,
     }}>
+    <Stack.Screen
+      name="Login"
+      component={Login}
+      options={{
+        title: 'Login',
+        headerShown: false,
+      }}
+    />
     <Stack.Screen
       name="Home"
       component={Home}
