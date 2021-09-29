@@ -2,6 +2,7 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
+import SignIn from '../pages/login/SignIn';
 import Login from '../pages/login/Login';
 import Home from '../pages/Home';
 import Sample from '../pages/Sample';
@@ -11,7 +12,7 @@ const Stack = createNativeStackNavigator();
 
 const StackNavigator = () => (
   <Stack.Navigator
-    initialRouteName="Login"
+    initialRouteName="SignIn"
     screenOptions={{
       headerStyle: {
         backgroundColor: '#fff',
@@ -21,14 +22,20 @@ const StackNavigator = () => (
         fontWeight: 'bold',
         color: '#1d1e2c',
       },
-      headerShown: false,
     }}>
+    <Stack.Screen
+      name="SignIn"
+      component={SignIn}
+      options={{
+        title: 'SignIn',
+        headerShown: false,
+      }}
+    />
     <Stack.Screen
       name="Login"
       component={Login}
       options={{
-        title: 'Login',
-        headerShown: false,
+        title: '',
       }}
     />
     <Stack.Screen

@@ -7,7 +7,7 @@ const Login = ({navigation}) => (
   <SafeAreaView style={styles.container} edges={['top', 'left', 'right']}>
     <View flex paddingH-25 paddingT-120>
       <Text blue50 text20>
-        Welcome
+        欢迎回来！
       </Text>
       <TextField text50 placeholder="username" grey10 />
       <TextField text50 placeholder="password" secureTextEntry grey10 />
@@ -22,7 +22,10 @@ const Login = ({navigation}) => (
             navigation.navigate('Home');
           }}
         />
-        <Button link text70 orange30 label="Sign Up" marginT-20 />
+        <Button link text70 orange30 label="忘记密码？" marginT-20 />
+        <Text>
+          还没有帐号? <Text color="#6266f9">马上注册</Text>
+        </Text>
       </View>
     </View>
   </SafeAreaView>
