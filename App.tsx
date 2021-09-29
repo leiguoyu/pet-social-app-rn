@@ -3,7 +3,7 @@ import React from 'react';
 import {Provider} from 'react-redux';
 import store from './js/redux/store';
 import AppNavigator from './js/navigation/AppNavigator';
-import {api} from '@/api';
+import {api} from '~/js/api';
 import './js/config/theme';
 
 debugger;
