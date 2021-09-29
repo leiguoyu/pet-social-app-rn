@@ -13,6 +13,10 @@ Typography.loadTypographies({
   heading: {fontSize: 36, fontWeight: '600'},
   subheading: {fontSize: 28, fontWeight: '500'},
   body: {fontSize: 18, fontWeight: '400'},
+  autoWidth: {width: '100%', textAlign: 'center'},
+  link: {color: '#6266f9'},
+  fontBold: {fontWeight: 'bold'},
+  textCenter: {textAlign: 'center'},
 });
 
 Spacings.loadSpacings({
@@ -34,6 +38,16 @@ ThemeManager.setComponentTheme('Button', (props, context) => {
   if (props.square) {
     return {
       borderRadius: 0,
+    };
+  }
+  if (props.backgroundRed) {
+    return {
+      backgroundColor: Colors.primaryColor,
+    };
+  }
+  if (props.backgroundBlue) {
+    return {
+      backgroundColor: Colors.secondaryColor,
     };
   }
 });

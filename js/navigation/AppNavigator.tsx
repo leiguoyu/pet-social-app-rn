@@ -27,7 +27,6 @@ const StackNavigator = () => (
       name="SignIn"
       component={SignIn}
       options={{
-        title: 'SignIn',
         headerShown: false,
       }}
     />
