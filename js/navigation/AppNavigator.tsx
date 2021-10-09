@@ -8,21 +8,11 @@ import Home from '../pages/Home';
 import Sample from '../pages/Sample';
 import SampleDetails from '../pages/SampleDetails';
 
+// 取redux
+let user_token = 'xxsw231w';
 const Stack = createNativeStackNavigator();
-
-const StackNavigator = () => (
-  <Stack.Navigator
-    initialRouteName="SignIn"
-    screenOptions={{
-      headerStyle: {
-        backgroundColor: '#fff',
-      },
-      headerTintColor: '#1d1e2c',
-      headerTitleStyle: {
-        fontWeight: 'bold',
-        color: '#1d1e2c',
-      },
-    }}>
+const no_token_page_JSX = (
+  <>
     <Stack.Screen
       name="SignIn"
       component={SignIn}
@@ -37,6 +27,10 @@ const StackNavigator = () => (
         title: '',
       }}
     />
+  </>
+);
+const token_page_JSX = (
+  <>
     <Stack.Screen
       name="Home"
       component={Home}
@@ -59,6 +53,23 @@ const StackNavigator = () => (
         title: 'SampleDetails',
       }}
     />
+  </>
+);
+
+const StackNavigator = () => (
+  <Stack.Navigator
+    initialRouteName={!user_token ? 'Login' : 'Home'}
+    screenOptions={{
+      headerStyle: {
+        backgroundColor: '#fff',
+      },
+      headerTintColor: '#1d1e2c',
+      headerTitleStyle: {
+        fontWeight: 'bold',
+        color: '#1d1e2c',
+      },
+    }}>
+    {!user_token ? no_token_page_JSX : token_page_JSX}
   </Stack.Navigator>
 );
 
