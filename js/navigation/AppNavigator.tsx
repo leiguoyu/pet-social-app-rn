@@ -9,7 +9,7 @@ import Sample from '../pages/Sample';
 import SampleDetails from '../pages/SampleDetails';
 
 // 取redux
-let user_token = 'xxsw231w';
+let user_token = '';
 const Stack = createNativeStackNavigator();
 const no_token_page_JSX = (
   <>
@@ -25,6 +25,8 @@ const no_token_page_JSX = (
       component={Login}
       options={{
         title: '',
+        headerShown: true, // 显示header
+        headerTransparent: true, // 设置header绝对定位且背景透明
       }}
     />
   </>
@@ -58,16 +60,9 @@ const token_page_JSX = (
 
 const StackNavigator = () => (
   <Stack.Navigator
-    initialRouteName={!user_token ? 'Login' : 'Home'}
+    initialRouteName={!user_token ? 'SignIn' : 'Home'}
     screenOptions={{
-      headerStyle: {
-        backgroundColor: '#fff',
-      },
-      headerTintColor: '#1d1e2c',
-      headerTitleStyle: {
-        fontWeight: 'bold',
-        color: '#1d1e2c',
-      },
+      headerShadowVisible: false,
     }}>
     {!user_token ? no_token_page_JSX : token_page_JSX}
   </Stack.Navigator>

@@ -16,7 +16,6 @@ Typography.loadTypographies({
   autoWidth: {width: '100%', textAlign: 'center'},
   link: {color: '#6266f9'},
   fontBold: {fontWeight: 'bold'},
-  textCenter: {textAlign: 'center'},
 });
 
 Spacings.loadSpacings({

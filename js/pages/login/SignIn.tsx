@@ -11,7 +11,7 @@ import {View, Image, Button, Text} from 'react-native-ui-lib';
 const SignIn = ({navigation}) => {
   const isDarkMode = useColorScheme() === 'dark';
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.container} edges={['top', 'left', 'right']}>
       <StatusBar
         translucent={true}
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
@@ -59,7 +59,7 @@ const SignIn = ({navigation}) => {
           </Text>
         </View>
         <View style={styles.statement}>
-          <Text textCenter>
+          <Text center>
             通过签署，你将遵守我们的
             <Text link fontBold>
               服务条款

@@ -1,44 +1,109 @@
 import * as React from 'react';
-import {StyleSheet} from 'react-native';
+import {StyleSheet, ImageBackground} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {View, TextField, Text, Button} from 'react-native-ui-lib';
 
 const Login = ({navigation}) => (
   <SafeAreaView style={styles.container} edges={['top', 'left', 'right']}>
-    <View flex paddingH-25 paddingT-120>
-      <Text blue50 text20>
-        欢迎回来！
-      </Text>
-      <TextField text50 placeholder="username" grey10 />
-      <TextField text50 placeholder="password" secureTextEntry grey10 />
-      <View marginT-100 center>
-        <Button
-          text70
-          white
-          background-orange30
-          label="Login"
-          onPress={() => {
-            /* Navigate to the Home route */
-            navigation.navigate('Home');
-          }}
-        />
-        <Button link text70 orange30 label="忘记密码？" marginT-20 />
-        <Text>
-          还没有帐号? <Text color="#6266f9">马上注册</Text>
-        </Text>
+    <ImageBackground
+      source={require('./image/bg.png')}
+      style={styles.imageBackground}>
+      <View flex style={styles.content}>
+        <View marginT-50 style={styles.loginForm}>
+          <Text style={styles.textLogin}>LOGIN</Text>
+          <Text style={styles.textWelcome}>欢迎回来！</Text>
+          <View style={styles.textFieldBox}>
+            <TextField
+              title="邮箱地址"
+              titleColor="#69707f"
+              titleStyle={styles.textFieldTitle}
+              enableErrors={false}
+              hideUnderline
+              style={styles.textField}
+              value="lehieuds@gmail.com"
+            />
+          </View>
+          <View style={styles.textFieldBox}>
+            <TextField
+              title="密码"
+              titleColor="#69707f"
+              titleStyle={styles.textFieldTitle}
+              enableErrors={false}
+              hideUnderline
+              secureTextEntry
+              style={styles.textField}
+              value="12345678"
+            />
+          </View>
+          <Button
+            widthAuto
+            backgroundRed
+            marginT-8
+            label="登录"
+            onPress={() => {
+              navigation.navigate('Home');
+            }}
+          />
+          <Text link fontBold marginT-20 center>
+            忘记密码？
+          </Text>
+        </View>
+        <View marginB-50 center>
+          <Text>
+            还没有帐号?
+            <Text link fontBold>
+              马上注册
+            </Text>
+          </Text>
+        </View>
       </View>
-    </View>
+    </ImageBackground>
   </SafeAreaView>
 );
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'center',
-    padding: 10,
-    backgroundColor: '#F5FCFF',
+  },
+  imageBackground: {
+    width: '100%',
+    height: '100%',
+  },
+  content: {
+    flex: 1,
+    justifyContent: 'space-between',
+  },
+  header: {},
+  loginForm: {
+    // marginTop: 50,
+    paddingLeft: 32,
+    paddingRight: 32,
+  },
+  textLogin: {
+    position: 'absolute',
+    color: '#f7f7fb',
+    fontSize: 72,
+  },
+  textWelcome: {
+    color: '#1d1e2c',
+    fontSize: 24,
+    marginTop: 48,
+    marginBottom: 67,
+  },
+  textFieldBox: {
+    backgroundColor: '#f7f7fb',
+    paddingTop: 12,
+    paddingLeft: 17,
+    paddingRight: 17,
+    paddingBottom: 7,
+    marginBottom: 24,
+  },
+  textFieldTitle: {
+    marginBottom: 0,
+  },
+  textField: {
+    color: '#1d1e2c',
+    fontSize: 16,
   },
 });
 
