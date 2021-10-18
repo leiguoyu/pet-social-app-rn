@@ -3,58 +3,50 @@ import {StyleSheet, ImageBackground} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {View, TextField, Text, Button} from 'react-native-ui-lib';
 
-const Login = ({navigation}) => (
+const SignUp2 = ({navigation}) => (
   <SafeAreaView style={styles.container} edges={['top', 'left', 'right']}>
     <ImageBackground
       source={require('../../images/bg.png')}
       style={styles.imageBackground}>
       <View flex style={styles.main}>
         <View marginT-50 style={styles.form}>
-          <Text style={styles.textBackground}>LOGIN</Text>
-          <Text style={styles.textWelcome}>欢迎回来！</Text>
+          <Text style={styles.textBackground}>SIGNUP</Text>
+          <Text style={styles.textWelcome}>欢迎使用</Text>
           <View style={styles.textFieldBox}>
             <TextField
-              title="邮箱地址"
-              titleColor="#69707f"
-              titleStyle={styles.textFieldTitle}
+              placeholder="邮箱地址"
               enableErrors={false}
               hideUnderline
               style={styles.textField}
-              value="lehieuds@gmail.com"
             />
           </View>
           <View style={styles.textFieldBox}>
             <TextField
-              title="密码"
-              titleColor="#69707f"
-              titleStyle={styles.textFieldTitle}
+              placeholder="密码"
               enableErrors={false}
               hideUnderline
               secureTextEntry
               style={styles.textField}
-              value="12345678"
             />
           </View>
-          <View marginT-8>
+          <View style={styles.textFieldBox}>
+            <TextField
+              placeholder="确认密码"
+              enableErrors={false}
+              hideUnderline
+              secureTextEntry
+              style={styles.textField}
+            />
+          </View>
+          <View marginT-8 marginB-24>
             <Button
               backgroundRed
-              label="登录"
+              label="注册"
               onPress={() => {
-                navigation.navigate('Home');
+                navigation.navigate('SignUpComplete');
               }}
             />
           </View>
-          <Text link fontBold marginT-20 center>
-            忘记密码？
-          </Text>
-        </View>
-        <View marginB-50>
-          <Text center>
-            还没有帐号?
-            <Text link fontBold>
-              马上注册
-            </Text>
-          </Text>
         </View>
       </View>
     </ImageBackground>
@@ -73,6 +65,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'space-between',
   },
+  header: {},
   form: {
     paddingLeft: 32,
     paddingRight: 32,
@@ -91,10 +84,10 @@ const styles = StyleSheet.create({
   },
   textFieldBox: {
     backgroundColor: '#f7f7fb',
-    paddingTop: 12,
+    paddingTop: 22,
     paddingLeft: 17,
     paddingRight: 17,
-    paddingBottom: 7,
+    paddingBottom: 18,
     marginBottom: 24,
   },
   textFieldTitle: {
@@ -106,4 +99,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Login;
+export default SignUp2;

@@ -12,41 +12,43 @@ const SignIn = ({navigation}) => {
   const isDarkMode = useColorScheme() === 'dark';
   return (
     <SafeAreaView style={styles.container} edges={['top', 'left', 'right']}>
-      <StatusBar
-        translucent={true}
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor="transparent"
-      />
       <ImageBackground
-        source={require('./image/bg.png')}
+        source={require('../../images/bg.png')}
         style={styles.imageBackground}>
-        <View style={styles.inside}>
-          <Image
-            marginB-150
-            style={styles.logo}
-            source={require('./image/logo.png')}
-          />
-          <Button
-            text14
-            label="快速登录通过FACEBOOK"
-            backgroundBlue
-            autoWidth
-            onPress={() => {
-              navigation.navigate('Login');
-            }}
-          />
-          <Button
-            text14
-            label="创建新账号"
-            marginT-24
-            marginB-45
-            backgroundRed
-            autoWidth
-            onPress={() => {
-              navigation.navigate('SignUp');
-            }}
-          />
-          <Text>
+        <StatusBar
+          translucent={true}
+          barStyle={isDarkMode ? 'light-content' : 'dark-content'}
+          backgroundColor="transparent"
+        />
+        <View style={styles.main}>
+          <View center>
+            <Image
+              marginB-150
+              style={styles.image}
+              source={require('../../images/logo.png')}
+            />
+          </View>
+          <View marginB-24>
+            <Button
+              text14
+              label="快速登录通过FACEBOOK"
+              backgroundBlue
+              onPress={() => {
+                navigation.navigate('Login');
+              }}
+            />
+          </View>
+          <View marginB-45>
+            <Button
+              text14
+              label="创建新账号"
+              backgroundRed
+              onPress={() => {
+                navigation.navigate('SignUp1');
+              }}
+            />
+          </View>
+          <Text center>
             已经有帐号?
             <Text
               link
@@ -83,15 +85,12 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
   },
-  inside: {
+  main: {
     flex: 1,
-    flexDirection: 'column',
     justifyContent: 'center',
-    alignItems: 'center',
-    alignSelf: 'center',
     padding: 32,
   },
-  logo: {
+  image: {
     width: 120,
     height: 148,
   },

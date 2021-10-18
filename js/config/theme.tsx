@@ -3,6 +3,7 @@ import {Colors, Typography, Spacings, ThemeManager} from 'react-native-ui-lib';
 Colors.loadColors({
   primaryColor: '#fa4169',
   secondaryColor: '#3b5998',
+  lightBlue: '#6266f9',
   textColor: '#221D23',
   errorColor: '#E63B2E',
   successColor: '#ADC76F',
@@ -13,7 +14,6 @@ Typography.loadTypographies({
   heading: {fontSize: 36, fontWeight: '600'},
   subheading: {fontSize: 28, fontWeight: '500'},
   body: {fontSize: 18, fontWeight: '400'},
-  autoWidth: {width: '100%', textAlign: 'center'},
   link: {color: '#6266f9'},
   fontBold: {fontWeight: 'bold'},
 });
@@ -47,6 +47,11 @@ ThemeManager.setComponentTheme('Button', (props, context) => {
   if (props.backgroundBlue) {
     return {
       backgroundColor: Colors.secondaryColor,
+    };
+  }
+  if (props.backgroundLightBlue) {
+    return {
+      backgroundColor: Colors.lightBlue,
     };
   }
 });
