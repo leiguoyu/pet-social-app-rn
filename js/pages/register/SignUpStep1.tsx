@@ -1,9 +1,9 @@
 import * as React from 'react';
 import {StyleSheet, ImageBackground} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import {View, TextField, Text, Button} from 'react-native-ui-lib';
+import {View, TextField, Text, Button, Image} from 'react-native-ui-lib';
 
-const SignUp2 = ({navigation}) => (
+const SignUpStep1 = ({navigation}) => (
   <SafeAreaView style={styles.container} edges={['top', 'left', 'right']}>
     <ImageBackground
       source={require('../../images/bg.png')}
@@ -11,42 +11,35 @@ const SignUp2 = ({navigation}) => (
       <View flex style={styles.main}>
         <View marginT-50 style={styles.form}>
           <Text style={styles.textBackground}>SIGNUP</Text>
-          <Text style={styles.textWelcome}>欢迎使用</Text>
-          <View style={styles.textFieldBox}>
-            <TextField
-              placeholder="邮箱地址"
-              enableErrors={false}
-              hideUnderline
-              style={styles.textField}
+          <Text style={styles.textWelcome}>欢迎使用 Pet Lover!</Text>
+          <View center>
+            <Image
+              marginB-36
+              style={styles.avatar}
+              source={require('../../images/ic_avatar_user.png')}
             />
           </View>
           <View style={styles.textFieldBox}>
             <TextField
-              placeholder="密码"
+              title="用户名"
+              titleColor="#69707f"
+              titleStyle={styles.textFieldTitle}
               enableErrors={false}
               hideUnderline
-              secureTextEntry
               style={styles.textField}
+              value="Hieu Le Quang"
             />
           </View>
-          <View style={styles.textFieldBox}>
-            <TextField
-              placeholder="确认密码"
-              enableErrors={false}
-              hideUnderline
-              secureTextEntry
-              style={styles.textField}
-            />
-          </View>
-          <View marginT-8 marginB-24>
-            <Button
-              backgroundRed
-              label="注册"
-              onPress={() => {
-                navigation.navigate('SignUpComplete');
-              }}
-            />
-          </View>
+          <Text color="#69707f">用你的真名让你更容易得到来自我们的帮助</Text>
+        </View>
+        <View marginB-42 paddingL-24 paddingR-24>
+          <Button
+            backgroundRed
+            label="继续"
+            onPress={() => {
+              navigation.navigate('SignUpStep2');
+            }}
+          />
         </View>
       </View>
     </ImageBackground>
@@ -61,11 +54,14 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
   },
+  avatar: {
+    width: 120,
+    height: 120,
+  },
   main: {
     flex: 1,
     justifyContent: 'space-between',
   },
-  header: {},
   form: {
     paddingLeft: 32,
     paddingRight: 32,
@@ -84,11 +80,14 @@ const styles = StyleSheet.create({
   },
   textFieldBox: {
     backgroundColor: '#f7f7fb',
-    paddingTop: 22,
-    paddingLeft: 17,
-    paddingRight: 17,
-    paddingBottom: 18,
-    marginBottom: 24,
+    paddingTop: 12,
+    paddingLeft: 16,
+    paddingRight: 16,
+    paddingBottom: 7,
+    marginBottom: 12,
+    borderWidth: 1,
+    borderColor: '#6266f9',
+    borderRadius: 2,
   },
   textFieldTitle: {
     marginBottom: 0,
@@ -96,7 +95,8 @@ const styles = StyleSheet.create({
   textField: {
     color: '#1d1e2c',
     fontSize: 16,
+    fontWeight: 'bold',
   },
 });
 
-export default SignUp2;
+export default SignUpStep1;

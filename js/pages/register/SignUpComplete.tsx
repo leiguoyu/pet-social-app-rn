@@ -35,7 +35,7 @@ const SignUpComplete = ({navigation}) => (
             label="添加新的宠物卡"
             backgroundRed
             onPress={() => {
-              navigation.navigate('AddPet');
+              navigation.navigate('AddNewPetStep1');
             }}
           />
         </View>

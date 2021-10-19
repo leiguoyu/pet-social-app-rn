@@ -2,14 +2,16 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
-import SignUp1 from '../pages/register/SignUp1';
-import SignUp2 from '../pages/register/SignUp2';
+import SignUpStep1 from '../pages/register/SignUpStep1';
+import SignUpStep2 from '../pages/register/SignUpStep2';
 import SignUpComplete from '../pages/register/SignUpComplete';
 import SignIn from '../pages/login/SignIn';
 import Login from '../pages/login/Login';
 import Home from '../pages/Home';
 import Sample from '../pages/Sample';
 import SampleDetails from '../pages/SampleDetails';
+import AddNewPetStep1 from '../pages/addNewPet/AddNewPetStep1';
+import AddNewPetStep2 from '../pages/addNewPet/AddNewPetStep2';
 
 // 取redux
 let user_token = '';
@@ -33,8 +35,8 @@ const no_token_page_JSX = (
       }}
     />
     <Stack.Screen
-      name="SignUp1"
-      component={SignUp1}
+      name="SignUpStep1"
+      component={SignUpStep1}
       options={{
         title: '',
         headerShown: true, // 显示header
@@ -42,8 +44,8 @@ const no_token_page_JSX = (
       }}
     />
     <Stack.Screen
-      name="SignUp2"
-      component={SignUp2}
+      name="SignUpStep2"
+      component={SignUpStep2}
       options={{
         title: '',
         headerShown: true, // 显示header
@@ -55,6 +57,24 @@ const no_token_page_JSX = (
       component={SignUpComplete}
       options={{
         headerShown: false, // 隐藏header
+      }}
+    />
+    <Stack.Screen
+      name="AddNewPetStep1"
+      component={AddNewPetStep1}
+      options={{
+        title: '',
+        headerShown: true, // 显示header
+        headerTransparent: true, // 设置header绝对定位且背景透明
+      }}
+    />
+    <Stack.Screen
+      name="AddNewPetStep2"
+      component={AddNewPetStep2}
+      options={{
+        title: '',
+        headerShown: true, // 显示header
+        headerTransparent: true, // 设置header绝对定位且背景透明
       }}
     />
   </>

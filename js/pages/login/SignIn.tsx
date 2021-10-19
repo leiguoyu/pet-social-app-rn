@@ -44,7 +44,7 @@ const SignIn = ({navigation}) => {
               label="创建新账号"
               backgroundRed
               onPress={() => {
-                navigation.navigate('SignUp1');
+                navigation.navigate('SignUpStep1');
               }}
             />
           </View>

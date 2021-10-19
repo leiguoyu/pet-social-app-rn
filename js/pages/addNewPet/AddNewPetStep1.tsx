@@ -1,60 +1,41 @@
 import * as React from 'react';
 import {StyleSheet, ImageBackground} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import {View, TextField, Text, Button} from 'react-native-ui-lib';
+import {View, TextField, Text, Button, Image} from 'react-native-ui-lib';
 
-const Login = ({navigation}) => (
+const AddNewPetStep1 = ({navigation}) => (
   <SafeAreaView style={styles.container} edges={['top', 'left', 'right']}>
     <ImageBackground
       source={require('../../images/bg.png')}
       style={styles.imageBackground}>
       <View flex style={styles.main}>
         <View marginT-50 style={styles.form}>
-          <Text style={styles.textBackground}>LOGIN</Text>
-          <Text style={styles.textWelcome}>欢迎回来！</Text>
-          <View style={styles.textFieldBox}>
-            <TextField
-              title="邮箱地址"
-              titleColor="#69707f"
-              titleStyle={styles.textFieldTitle}
-              enableErrors={false}
-              hideUnderline
-              style={styles.textField}
-              value="lehieuds@gmail.com"
+          <Text style={styles.textBackground}>NEW PET</Text>
+          <Text style={styles.textWelcome}>宠物名&头像</Text>
+          <View center>
+            <Image
+              marginB-36
+              style={styles.avatar}
+              source={require('../../images/ic_avatar_pet.png')}
             />
           </View>
           <View style={styles.textFieldBox}>
             <TextField
-              title="密码"
-              titleColor="#69707f"
-              titleStyle={styles.textFieldTitle}
+              placeholder="宠物名字"
               enableErrors={false}
               hideUnderline
-              secureTextEntry
               style={styles.textField}
-              value="12345678"
             />
           </View>
-          <View marginT-8>
-            <Button
-              backgroundRed
-              label="登录"
-              onPress={() => {
-                navigation.navigate('Home');
-              }}
-            />
-          </View>
-          <Text link fontBold marginT-20 center>
-            忘记密码？
-          </Text>
         </View>
-        <View marginB-50>
-          <Text center>
-            还没有帐号?
-            <Text link fontBold>
-              马上注册
-            </Text>
-          </Text>
+        <View marginB-42 paddingL-24 paddingR-24>
+          <Button
+            backgroundRed
+            label="继续"
+            onPress={() => {
+              navigation.navigate('AddNewPetStep2');
+            }}
+          />
         </View>
       </View>
     </ImageBackground>
@@ -68,6 +49,10 @@ const styles = StyleSheet.create({
   imageBackground: {
     width: '100%',
     height: '100%',
+  },
+  avatar: {
+    width: 120,
+    height: 120,
   },
   main: {
     flex: 1,
@@ -91,11 +76,12 @@ const styles = StyleSheet.create({
   },
   textFieldBox: {
     backgroundColor: '#f7f7fb',
-    paddingTop: 12,
+    paddingTop: 20,
     paddingLeft: 16,
     paddingRight: 16,
-    paddingBottom: 7,
-    marginBottom: 24,
+    paddingBottom: 20,
+    marginBottom: 12,
+    borderRadius: 2,
   },
   textFieldTitle: {
     marginBottom: 0,
@@ -103,7 +89,8 @@ const styles = StyleSheet.create({
   textField: {
     color: '#1d1e2c',
     fontSize: 16,
+    fontWeight: 'bold',
   },
 });
 
-export default Login;
+export default AddNewPetStep1;
