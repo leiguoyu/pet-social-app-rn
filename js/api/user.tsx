@@ -1,6 +1,6 @@
 import http from '~/js/utils/http';
 
-let getUserInfo, updateUserInfo, addUserInfo, delUserInfo;
+let getUserInfo, updateUserInfo, addUserInfo, delUserInfo, login;
 
 getUserInfo = (data: any) =>
   http.post({
@@ -26,9 +26,16 @@ delUserInfo = (data: any) =>
     data: data,
   });
 
+login = (data: any) =>
+  http.post({
+    url: 'login',
+    data: data,
+  });
+
 export let user = {
   getUserInfo,
   updateUserInfo,
   addUserInfo,
   delUserInfo,
+  login,
 };

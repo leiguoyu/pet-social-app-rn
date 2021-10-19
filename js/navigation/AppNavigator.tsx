@@ -13,8 +13,11 @@ import SampleDetails from '../pages/SampleDetails';
 import AddNewPetStep1 from '../pages/addNewPet/AddNewPetStep1';
 import AddNewPetStep2 from '../pages/addNewPet/AddNewPetStep2';
 
-// 取redux
-let user_token = '';
+import store from '~/js/redux/store';
+// 获取state对象
+let state: any = store.getState();
+// 获取token
+let user_token = state.token;
 const Stack = createNativeStackNavigator();
 const no_token_page_JSX = (
   <>
