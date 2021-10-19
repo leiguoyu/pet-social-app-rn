@@ -1,21 +1,20 @@
 import {combineReducers} from 'redux';
-import {CounterState} from '../../types';
+import {redux_state} from '../../types';
 
 const initialState = {
-  value: 0,
-} as CounterState;
+  token: '',
+} as redux_state;
 
-function counterReducer(state = initialState, action: any) {
+function user(state = initialState, action: any) {
+  debugger;
   switch (action.type) {
-    case 'INCREMENT':
-      return {...state, value: state.value + 1};
-    case 'DECREMENT':
-      return {...state, value: state.value - 1};
+    case 'TOKEN':
+      return {...state, value: state.token + 1};
     default:
       return state;
   }
 }
 
 export default combineReducers({
-  counter: counterReducer,
+  user,
 });

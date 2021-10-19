@@ -10,8 +10,6 @@ import {
 import {SafeAreaView, useSafeAreaInsets} from 'react-native-safe-area-context';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 
-import Counter from '../components/Counter';
-
 const Sample = ({navigation}) => {
   const isDarkMode = useColorScheme() === 'dark';
 
@@ -30,7 +28,6 @@ const Sample = ({navigation}) => {
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
       <ScrollView contentInsetAdjustmentBehavior="automatic">
         <Text style={styles.sectionContainer}>Hello Redux</Text>
-        <Counter />
         <Text style={styles.sectionContainer}>Hello React Navigation</Text>
         {/* 传参 */}
         <Button

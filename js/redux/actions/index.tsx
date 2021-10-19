@@ -1,13 +1,19 @@
 import {Dispatch} from 'redux';
+import * as types from '~/js/redux/constants/action_types';
+import {api} from '~/js/api';
 
-const increment = () => ({type: 'INCREMENT'});
-
-const decrement = () => ({type: 'DECREMENT'});
-
-const incrementAsync = () => (dispath: Dispatch) => {
-  setTimeout(function () {
-    return dispath(increment());
-  }, 1000);
+const login = (data: object) => (dispatch: Dispatch) => {
+  dispatch({
+    type: types.LOGIN,
+    token: 'xxxxxxx',
+  });
+  api.user.login(data).then((res: any) => {
+    res.token &&
+      dispatch({
+        type: types.LOGIN,
+        token: res.token,
+      });
+  });
 };
 
-export {increment, decrement, incrementAsync};
+export {login};

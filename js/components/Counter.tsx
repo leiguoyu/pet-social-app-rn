@@ -2,9 +2,9 @@ import React, {Component} from 'react';
 import {StyleSheet, Text, View, Button} from 'react-native';
 import {connect, DispatchProp} from 'react-redux';
 import {increment, decrement, incrementAsync} from '../redux/actions';
-import {CounterState} from '../types';
+import {redux_state} from '../types';
 
-type Props = CounterState & DispatchProp;
+type Props = redux_state & DispatchProp;
 
 class Counter extends Component<Props> {
   constructor(props: Props) {

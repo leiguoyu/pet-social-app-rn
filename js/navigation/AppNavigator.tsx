@@ -7,9 +7,11 @@ import Login from '../pages/login/Login';
 import Home from '../pages/Home';
 import Sample from '../pages/Sample';
 import SampleDetails from '../pages/SampleDetails';
-
-// 取redux
-let user_token = 'xxsw231w';
+import store from '~/js/redux/store';
+// 获取state对象
+let state: any = store.getState();
+// 获取token
+let user_token = state.token;
 const Stack = createNativeStackNavigator();
 const no_token_page_JSX = (
   <>
