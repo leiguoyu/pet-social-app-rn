@@ -1,65 +1,72 @@
-import * as React from 'react';
+import React, {useState} from 'react';
 import {StyleSheet, ImageBackground} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {View, TextField, Text, Button} from 'react-native-ui-lib';
-
-const Login = ({navigation}) => (
-  <SafeAreaView style={styles.container} edges={['top', 'left', 'right']}>
-    <ImageBackground
-      source={require('../../images/bg.png')}
-      style={styles.imageBackground}>
-      <View flex style={styles.main}>
-        <View marginT-50 style={styles.form}>
-          <Text style={styles.textBackground}>LOGIN</Text>
-          <Text style={styles.textWelcome}>欢迎回来！</Text>
-          <View style={styles.textFieldBox}>
-            <TextField
-              title="邮箱地址"
-              titleColor="#69707f"
-              titleStyle={styles.textFieldTitle}
-              enableErrors={false}
-              hideUnderline
-              style={styles.textField}
-              value="lehieuds@gmail.com"
-            />
-          </View>
-          <View style={styles.textFieldBox}>
-            <TextField
-              title="密码"
-              titleColor="#69707f"
-              titleStyle={styles.textFieldTitle}
-              enableErrors={false}
-              hideUnderline
-              secureTextEntry
-              style={styles.textField}
-              value="12345678"
-            />
-          </View>
-          <View marginT-8>
-            <Button
-              backgroundRed
-              label="登录"
-              onPress={() => {
-                navigation.navigate('Home');
-              }}
-            />
-          </View>
-          <Text link fontBold marginT-20 center>
-            忘记密码？
-          </Text>
-        </View>
-        <View marginB-50>
-          <Text center>
-            还没有帐号?
-            <Text link fontBold>
-              马上注册
+import {login} from '~/js/redux/actions/index';
+import {connect} from 'react-redux';
+const LoginContainer = ({navigation, login}) => {
+  let [user_email, onEmailChangeText] = useState('');
+  let [user_pwd, onPwdChangeText] = useState('');
+  const GoLogin = () => {
+    login({
+      user_email,
+      user_pwd,
+    });
+  };
+  return (
+    <SafeAreaView style={styles.container} edges={['top', 'left', 'right']}>
+      <ImageBackground
+        source={require('../../images/bg.png')}
+        style={styles.imageBackground}>
+        <View flex style={styles.main}>
+          <View marginT-50 style={styles.form}>
+            <Text style={styles.textBackground}>LOGIN</Text>
+            <Text style={styles.textWelcome}>欢迎回来！</Text>
+            <View style={styles.textFieldBox}>
+              <TextField
+                title="邮箱地址"
+                titleColor="#69707f"
+                titleStyle={styles.textFieldTitle}
+                enableErrors={false}
+                hideUnderline
+                style={styles.textField}
+                onChangeText={(text: any) => onEmailChangeText(text)}
+                value={user_email}
+              />
+            </View>
+            <View style={styles.textFieldBox}>
+              <TextField
+                title="密码"
+                titleColor="#69707f"
+                titleStyle={styles.textFieldTitle}
+                enableErrors={false}
+                hideUnderline
+                secureTextEntry
+                style={styles.textField}
+                onChangeText={(text: any) => onPwdChangeText(text)}
+                value={user_pwd}
+              />
+            </View>
+            <View marginT-8>
+              <Button backgroundRed label="登录" onPress={GoLogin} />
+            </View>
+            <Text link fontBold marginT-20 center>
+              忘记密码？
             </Text>
-          </Text>
+          </View>
+          <View marginB-50>
+            <Text center>
+              还没有帐号?
+              <Text link fontBold>
+                马上注册
+              </Text>
+            </Text>
+          </View>
         </View>
-      </View>
-    </ImageBackground>
-  </SafeAreaView>
-);
+      </ImageBackground>
+    </SafeAreaView>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -105,5 +112,5 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
 });
-
-export default Login;
+// export default Login;
+export default connect(null, {login})(LoginContainer);

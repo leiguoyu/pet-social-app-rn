@@ -6,10 +6,9 @@ const initialState = {
 } as redux_state;
 
 function user(state = initialState, action: any) {
-  debugger;
   switch (action.type) {
-    case 'TOKEN':
-      return {...state, value: state.token + 1};
+    case 'LOGIN':
+      return {...state, token: action.token};
     default:
       return state;
   }

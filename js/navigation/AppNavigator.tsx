@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
@@ -15,9 +15,10 @@ import AddNewPetStep2 from '../pages/addNewPet/AddNewPetStep2';
 
 import store from '~/js/redux/store';
 // 获取state对象
-let state: any = store.getState();
+// let state: any = store.getState();
 // 获取token
-let user_token = state.token;
+// let user_token = state.user.token;
+
 const Stack = createNativeStackNavigator();
 const no_token_page_JSX = (
   <>
@@ -109,22 +110,39 @@ const token_page_JSX = (
   </>
 );
 
-const StackNavigator = () => (
-  <Stack.Navigator
-    initialRouteName={!user_token ? 'SignIn' : 'Home'}
-    screenOptions={{
-      headerShadowVisible: false,
-    }}>
-    {!user_token ? no_token_page_JSX : token_page_JSX}
-  </Stack.Navigator>
-);
+// const StackNavigator = () => (
+//   <Stack.Navigator
+//     initialRouteName={!user_token ? 'SignIn' : 'Home'}
+//     screenOptions={{
+//       headerShadowVisible: false,
+//     }}>
+//     {!user_token ? no_token_page_JSX : token_page_JSX}
+//   </Stack.Navigator>
+// );
 
-const AppNavigator = () => (
-  <SafeAreaProvider>
-    <NavigationContainer>
-      <StackNavigator />
-    </NavigationContainer>
-  </SafeAreaProvider>
-);
+const AppNavigator = () => {
+  let [user_token, TokenChange] = useState('');
+  // 每天store数据发生变化，执行该钩子
+  store.subscribe(() => {
+    // TODO 每次state改变都会进来，待优化
+    // 获取state对象
+    let state: any = store.getState();
+    // 更新token
+    TokenChange(state.user.token);
+  });
+  return (
+    <SafeAreaProvider>
+      <NavigationContainer>
+        <Stack.Navigator
+          initialRouteName={!user_token ? 'SignIn' : 'Home'}
+          screenOptions={{
+            headerShadowVisible: false,
+          }}>
+          {!user_token ? no_token_page_JSX : token_page_JSX}
+        </Stack.Navigator>
+      </NavigationContainer>
+    </SafeAreaProvider>
+  );
+};
 
 export default AppNavigator;
