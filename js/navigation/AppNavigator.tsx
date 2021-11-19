@@ -127,7 +127,7 @@ const AppNavigator = () => {
     // TODO 每次state改变都会进来，待优化
     // 获取state对象
     let state: any = store.getState();
-    // 更新token
+    // 更新token no_token_page_JSX
     TokenChange(state.user.token);
   });
   return (
@@ -138,7 +138,7 @@ const AppNavigator = () => {
           screenOptions={{
             headerShadowVisible: false,
           }}>
-          {!user_token ? no_token_page_JSX : token_page_JSX}
+          {!user_token ? token_page_JSX : token_page_JSX}
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaProvider>
