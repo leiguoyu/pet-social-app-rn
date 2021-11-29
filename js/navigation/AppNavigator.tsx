@@ -138,7 +138,7 @@ const AppNavigator = () => {
           screenOptions={{
             headerShadowVisible: false,
           }}>
-          {!user_token ? token_page_JSX : token_page_JSX}
+          {!user_token ? no_token_page_JSX : token_page_JSX}
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaProvider>

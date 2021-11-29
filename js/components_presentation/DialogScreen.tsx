@@ -189,7 +189,7 @@ export default class DialogScreen extends Component {
 
     return (
       <Dialog
-        useSafeArea
+        useSafeArea={false}
         key={this.getDialogKey(height)}
         height={height}
         panDirection={this.panDirection}
