@@ -16,6 +16,13 @@ Typography.loadTypographies({
   body: {fontSize: 18, fontWeight: '400'},
   link: {color: '#6266f9'},
   fontBold: {fontWeight: 'bold'},
+  'font-10': {fontSize: 10},
+  'font-12': {fontSize: 12},
+  'font-14': {fontSize: 14},
+  'font-16': {fontSize: 16},
+  'font-18': {fontSize: 18},
+  colorGreyLight: {color: '#69707f'},
+  color1d1e2c: {color: '#1d1e2c'},
 });
 
 Spacings.loadSpacings({
