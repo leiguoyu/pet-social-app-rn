@@ -1,54 +1,45 @@
 import * as React from 'react';
-import {StyleSheet, ImageBackground} from 'react-native';
-import {SafeAreaView} from 'react-native-safe-area-context';
+import {StyleSheet} from 'react-native';
 import {View, TextField, Text, Button, Image} from 'react-native-ui-lib';
 
 const AddNewPetStep1 = ({navigation}) => (
-  <SafeAreaView style={styles.container} edges={['top', 'left', 'right']}>
-    <ImageBackground
-      source={require('../../images/bg.png')}
-      style={styles.imageBackground}>
-      <View flex style={styles.main}>
-        <View marginT-50 style={styles.form}>
-          <Text style={styles.textBackground}>NEW PET</Text>
-          <Text style={styles.textWelcome}>宠物名&头像</Text>
-          <View center>
-            <Image
-              marginB-36
-              style={styles.avatar}
-              source={require('../../images/ic_avatar_pet.png')}
-            />
-          </View>
-          <View style={styles.textFieldBox}>
-            <TextField
-              placeholder="宠物名字"
-              enableErrors={false}
-              hideUnderline
-              style={styles.textField}
-            />
-          </View>
+  <View style={styles.container} bg-white>
+    <View flex style={styles.main}>
+      <View marginT-50 style={styles.form}>
+        <Text style={styles.textBackground}>NEWPET</Text>
+        <Text style={styles.textWelcome}>宠物名&头像</Text>
+        <View center>
+          <Image
+            marginB-36
+            style={styles.avatar}
+            source={require('../../images/ic_avatar_pet.png')}
+          />
         </View>
-        <View marginB-42 paddingL-24 paddingR-24>
-          <Button
-            backgroundRed
-            label="继续"
-            onPress={() => {
-              navigation.navigate('AddNewPetStep2');
-            }}
+        <View style={styles.textFieldBox}>
+          <TextField
+            placeholder="宠物名字"
+            enableErrors={false}
+            hideUnderline
+            style={styles.textField}
           />
         </View>
       </View>
-    </ImageBackground>
-  </SafeAreaView>
+      <View marginB-42 paddingL-24 paddingR-24>
+        <Button
+          backgroundRed
+          label="继续"
+          onPress={() => {
+            navigation.navigate('AddNewPetStep2');
+          }}
+        />
+      </View>
+    </View>
+  </View>
 );
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  },
-  imageBackground: {
-    width: '100%',
-    height: '100%',
   },
   avatar: {
     width: 120,
@@ -66,6 +57,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     color: '#f7f7fb',
     fontSize: 72,
+    fontWeight: 'bold',
   },
   textWelcome: {
     color: '#1d1e2c',

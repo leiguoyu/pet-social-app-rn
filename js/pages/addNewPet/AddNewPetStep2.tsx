@@ -1,63 +1,129 @@
-import * as React from 'react';
-import {StyleSheet, ImageBackground} from 'react-native';
-import {SafeAreaView} from 'react-native-safe-area-context';
-import {View, TextField, Text, Button, Image} from 'react-native-ui-lib';
+import React, {useState} from 'react';
+import {StyleSheet, TouchableOpacity, ScrollView} from 'react-native';
+import {View, TextField, Text, Image} from 'react-native-ui-lib';
+import DialogScreen from '~/js/components_presentation/DialogScreen';
 
-const AddNewPetStep2 = ({navigation}) => (
-  <SafeAreaView style={styles.container} edges={['top', 'left', 'right']}>
-    <ImageBackground
-      source={require('../../images/bg.png')}
-      style={styles.imageBackground}>
+const petTypes = [
+  {
+    id: 0,
+    type: 'dog',
+    text: '狗',
+    imgSrc: require('./img/Dog.png'),
+  },
+  {
+    id: 1,
+    type: 'cat',
+    text: '猫',
+    imgSrc: require('./img/Cat.png'),
+  },
+  {
+    id: 2,
+    type: 'rabbit',
+    text: '兔子',
+    imgSrc: require('./img/Bunny.png'),
+  },
+  {
+    id: 3,
+    type: 'bird',
+    text: '鸟',
+    imgSrc: require('./img/Bird.png'),
+  },
+  {
+    id: 4,
+    type: 'hamster',
+    text: '仓鼠',
+    imgSrc: require('./img/Hamster.png'),
+  },
+  {
+    id: 5,
+    type: 'other',
+    text: '其它',
+    imgSrc: require('./img/Other.png'),
+  },
+];
+
+const AddNewPetStep2 = ({navigation}) => {
+  const [visible, setVisible] = useState(false);
+
+  const [petType, setPetType] = useState('');
+
+  const showDialog = () => {
+    setVisible(true);
+  };
+
+  const hideDialog = () => {
+    setVisible(false);
+  };
+
+  const onConfirm = () => {
+    hideDialog();
+  };
+
+  const onDismiss = () => {
+    hideDialog();
+  };
+
+  const onSelectPetType = (pet_type: string) => {
+    setPetType(pet_type);
+    navigation.navigate('AddNewPetStep3');
+    if (pet_type === 'other') {
+      showDialog();
+    }
+  };
+
+  return (
+    <View style={styles.container} bg-white>
       <View flex style={styles.main}>
         <View marginT-50 style={styles.form}>
-          <Text style={styles.textBackground}>NEW PET</Text>
+          <Text style={styles.textBackground}>NEWPET</Text>
           <Text style={styles.textWelcome}>宠物类型</Text>
         </View>
-        <View flex row style={styles.petTypeBox}>
-          <View style={styles.petTypeItem}>
-            <Image style={styles.petType} source={require('./img/Dog.png')} />
-            <Text center>狗</Text>
+        <ScrollView>
+          <View flex row style={styles.petTypeBox}>
+            {petTypes.map(item => (
+              <TouchableOpacity
+                key={item.id}
+                onPress={() => {
+                  onSelectPetType(item.type);
+                }}>
+                <View style={styles.petTypeItem}>
+                  <View
+                    style={[
+                      styles.petType,
+                      petType === item.type ? styles.selected : '',
+                    ]}>
+                    <Image style={styles.petTypeImage} source={item.imgSrc} />
+                  </View>
+                  <Text
+                    center
+                    style={petType === item.type ? styles.selectedColor : ''}>
+                    {item.text}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            ))}
           </View>
-          <View style={styles.petTypeItem}>
-            <Image style={styles.petType} source={require('./img/Cat.png')} />
-            <Text center>猫</Text>
-          </View>
-          <View style={styles.petTypeItem}>
-            <Image style={styles.petType} source={require('./img/Bunny.png')} />
-            <Text center>兔子</Text>
-          </View>
-          <View style={styles.petTypeItem}>
-            <Image style={styles.petType} source={require('./img/Bird.png')} />
-            <Text center>鸟</Text>
-          </View>
-          <View style={styles.petTypeItem}>
-            <Image
-              style={styles.petType}
-              source={require('./img/Hamster.png')}
-            />
-            <Text center>仓鼠</Text>
-          </View>
-          <View style={styles.petTypeItem}>
-            <Image style={styles.petType} source={require('./img/Other.png')} />
-            <Text center>其他</Text>
-          </View>
-        </View>
+        </ScrollView>
       </View>
-    </ImageBackground>
-  </SafeAreaView>
-);
+      <DialogScreen
+        visible={visible}
+        title="其它类型"
+        onConfirm={onConfirm}
+        onDismiss={onDismiss}>
+        <TextField
+          centered
+          hideUnderline
+          enableErrors={false}
+          style={styles.textFiled}
+        />
+      </DialogScreen>
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  },
-  imageBackground: {
-    width: '100%',
-    height: '100%',
-  },
-  avatar: {
-    width: 120,
-    height: 120,
   },
   main: {
     flex: 1,
@@ -71,6 +137,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     color: '#f7f7fb',
     fontSize: 72,
+    fontWeight: 'bold',
   },
   textWelcome: {
     color: '#1d1e2c',
@@ -80,18 +147,37 @@ const styles = StyleSheet.create({
     marginBottom: 67,
   },
   petType: {
+    padding: 4,
+    borderWidth: 8,
+    borderColor: 'transparent',
+    borderRadius: 100,
+  },
+  petTypeImage: {
     width: 96,
     height: 96,
   },
   petTypeBox: {
     flexWrap: 'wrap',
     justifyContent: 'space-between',
-    paddingLeft: 64,
-    paddingRight: 64,
+    paddingLeft: 52,
+    paddingRight: 52,
   },
   petTypeItem: {
-    marginBottom: 34,
+    marginBottom: 23,
     // marginLeft: 56,
+  },
+  selected: {
+    borderColor: '#fa4169',
+  },
+  selectedColor: {
+    color: '#fa4169',
+  },
+  textFiled: {
+    width: '100%',
+    borderWidth: 1,
+    borderColor: '#6266f9',
+    padding: 17,
+    borderRadius: 5,
   },
 });
 

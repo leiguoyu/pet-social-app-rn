@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import {StyleSheet, ImageBackground} from 'react-native';
-import {SafeAreaView} from 'react-native-safe-area-context';
 import {View, TextField, Text, Button} from 'react-native-ui-lib';
 import {login} from '~/js/redux/actions/index';
 import {connect} from 'react-redux';
@@ -14,67 +13,61 @@ const LoginContainer = ({navigation, login}) => {
     });
   };
   return (
-    <SafeAreaView style={styles.container} edges={['top', 'left', 'right']}>
-      <ImageBackground
-        source={require('../../images/bg.png')}
-        style={styles.imageBackground}>
-        <View flex style={styles.main}>
-          <View marginT-50 style={styles.form}>
-            <Text style={styles.textBackground}>LOGIN</Text>
-            <Text style={styles.textWelcome}>欢迎回来！</Text>
-            <View style={styles.textFieldBox}>
-              <TextField
-                title="邮箱地址"
-                titleColor="#69707f"
-                titleStyle={styles.textFieldTitle}
-                enableErrors={false}
-                hideUnderline
-                style={styles.textField}
-                onChangeText={(text: any) => onEmailChangeText(text)}
-                value={user_email}
-              />
-            </View>
-            <View style={styles.textFieldBox}>
-              <TextField
-                title="密码"
-                titleColor="#69707f"
-                titleStyle={styles.textFieldTitle}
-                enableErrors={false}
-                hideUnderline
-                secureTextEntry
-                style={styles.textField}
-                onChangeText={(text: any) => onPwdChangeText(text)}
-                value={user_pwd}
-              />
-            </View>
-            <View marginT-8>
-              <Button backgroundRed label="登录" onPress={GoLogin} />
-            </View>
-            <Text link fontBold marginT-20 center>
-              忘记密码？
-            </Text>
+    <ImageBackground
+      source={require('../../images/BG.png')}
+      style={styles.container}>
+      <View flex style={styles.main}>
+        <View marginT-50 style={styles.form}>
+          <Text style={styles.textBackground}>LOGIN</Text>
+          <Text style={styles.textWelcome}>欢迎回来！</Text>
+          <View style={styles.textFieldBox}>
+            <TextField
+              title="邮箱地址"
+              titleColor="#69707f"
+              titleStyle={styles.textFieldTitle}
+              enableErrors={false}
+              hideUnderline
+              style={styles.textField}
+              onChangeText={(text: any) => onEmailChangeText(text)}
+              value={user_email}
+            />
           </View>
-          <View marginB-50>
-            <Text center>
-              还没有帐号?
-              <Text link fontBold>
-                马上注册
-              </Text>
-            </Text>
+          <View style={styles.textFieldBox}>
+            <TextField
+              title="密码"
+              titleColor="#69707f"
+              titleStyle={styles.textFieldTitle}
+              enableErrors={false}
+              hideUnderline
+              secureTextEntry
+              style={styles.textField}
+              onChangeText={(text: any) => onPwdChangeText(text)}
+              value={user_pwd}
+            />
           </View>
+          <View marginT-8>
+            <Button backgroundRed label="登录" onPress={GoLogin} />
+          </View>
+          <Text link fontBold marginT-20 center>
+            忘记密码？
+          </Text>
         </View>
-      </ImageBackground>
-    </SafeAreaView>
+        <View marginB-50>
+          <Text center>
+            还没有帐号?
+            <Text link fontBold>
+              马上注册
+            </Text>
+          </Text>
+        </View>
+      </View>
+    </ImageBackground>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  },
-  imageBackground: {
-    width: '100%',
-    height: '100%',
   },
   main: {
     flex: 1,
@@ -88,6 +81,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     color: '#f7f7fb',
     fontSize: 72,
+    fontWeight: 'bold',
   },
   textWelcome: {
     color: '#1d1e2c',
