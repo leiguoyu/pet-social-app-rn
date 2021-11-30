@@ -3,10 +3,10 @@ import {StyleSheet} from 'react-native';
 import {View, TextField, Text, Button, Image} from 'react-native-ui-lib';
 
 const AddNewPetStep1 = ({navigation}) => (
-  <View style={styles.container}>
+  <View style={styles.container} bg-white>
     <View flex style={styles.main}>
       <View marginT-50 style={styles.form}>
-        <Text style={styles.textBackground}>NEW PET</Text>
+        <Text style={styles.textBackground}>NEWPET</Text>
         <Text style={styles.textWelcome}>宠物名&头像</Text>
         <View center>
           <Image
@@ -57,6 +57,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     color: '#f7f7fb',
     fontSize: 72,
+    fontWeight: 'bold',
   },
   textWelcome: {
     color: '#1d1e2c',

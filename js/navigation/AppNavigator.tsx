@@ -12,6 +12,7 @@ import Sample from '../pages/Sample';
 import SampleDetails from '../pages/SampleDetails';
 import AddNewPetStep1 from '../pages/addNewPet/AddNewPetStep1';
 import AddNewPetStep2 from '../pages/addNewPet/AddNewPetStep2';
+import AddNewPetStep3 from '../pages/addNewPet/AddNewPetStep3';
 
 import store from '~/js/redux/store';
 // 获取state对象
@@ -75,6 +76,15 @@ const no_token_page_JSX = (
     <Stack.Screen
       name="AddNewPetStep2"
       component={AddNewPetStep2}
+      options={{
+        title: '',
+        headerShown: true, // 显示header
+        headerTransparent: true, // 设置header绝对定位且背景透明
+      }}
+    />
+    <Stack.Screen
+      name="AddNewPetStep3"
+      component={AddNewPetStep3}
       options={{
         title: '',
         headerShown: true, // 显示header

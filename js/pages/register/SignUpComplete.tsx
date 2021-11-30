@@ -4,7 +4,7 @@ import {View, Image, Button, Text} from 'react-native-ui-lib';
 
 const SignUpComplete = ({navigation}) => (
   <ImageBackground
-    source={require('../../images/bg.png')}
+    source={require('../../images/BG.png')}
     style={styles.container}>
     <View style={styles.main}>
       <View center>

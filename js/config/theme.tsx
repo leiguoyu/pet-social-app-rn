@@ -1,4 +1,10 @@
-import {Colors, Typography, Spacings, ThemeManager} from 'react-native-ui-lib';
+import {
+  Colors,
+  Assets,
+  Typography,
+  Spacings,
+  ThemeManager,
+} from 'react-native-ui-lib';
 
 Colors.loadColors({
   primaryColor: '#fa4169',
@@ -22,6 +28,10 @@ Spacings.loadSpacings({
   page: 20,
   card: 12,
   gridGutter: 16,
+});
+
+Assets.loadAssetsGroup('icons', {
+  search: require('../../js/images/ic_search_24.png'),
 });
 
 // with plain object

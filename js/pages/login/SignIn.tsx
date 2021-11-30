@@ -11,7 +11,7 @@ const SignIn = ({navigation}) => {
   const isDarkMode = useColorScheme() === 'dark';
   return (
     <ImageBackground
-      source={require('../../images/bg.png')}
+      source={require('../../images/BG.png')}
       style={styles.container}>
       <StatusBar
         translucent={true}

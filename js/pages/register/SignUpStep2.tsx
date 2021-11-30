@@ -4,7 +4,7 @@ import {View, TextField, Text, Button} from 'react-native-ui-lib';
 
 const SignUpStep2 = ({navigation}) => (
   <ImageBackground
-    source={require('../../images/bg.png')}
+    source={require('../../images/BG.png')}
     style={styles.container}>
     <View flex style={styles.main}>
       <View marginT-50 style={styles.form}>
@@ -66,6 +66,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     color: '#f7f7fb',
     fontSize: 72,
+    fontWeight: 'bold',
   },
   textWelcome: {
     color: '#1d1e2c',

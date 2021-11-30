@@ -45,7 +45,7 @@ const petTypes = [
 const AddNewPetStep2 = ({navigation}) => {
   const [visible, setVisible] = useState(false);
 
-  const [petType, setPetType] = useState('dog');
+  const [petType, setPetType] = useState('');
 
   const showDialog = () => {
     setVisible(true);
@@ -65,42 +65,45 @@ const AddNewPetStep2 = ({navigation}) => {
 
   const onSelectPetType = (pet_type: string) => {
     setPetType(pet_type);
+    navigation.navigate('AddNewPetStep3');
     if (pet_type === 'other') {
       showDialog();
     }
   };
 
   return (
-    <ScrollView style={styles.container}>
+    <View style={styles.container} bg-white>
       <View flex style={styles.main}>
         <View marginT-50 style={styles.form}>
-          <Text style={styles.textBackground}>NEW PET</Text>
+          <Text style={styles.textBackground}>NEWPET</Text>
           <Text style={styles.textWelcome}>宠物类型</Text>
         </View>
-        <View flex row style={styles.petTypeBox}>
-          {petTypes.map(item => (
-            <TouchableOpacity
-              key={item.id}
-              onPress={() => {
-                onSelectPetType(item.type);
-              }}>
-              <View style={styles.petTypeItem}>
-                <View
-                  style={[
-                    styles.petType,
-                    petType === item.type ? styles.selected : '',
-                  ]}>
-                  <Image style={styles.petTypeImage} source={item.imgSrc} />
+        <ScrollView>
+          <View flex row style={styles.petTypeBox}>
+            {petTypes.map(item => (
+              <TouchableOpacity
+                key={item.id}
+                onPress={() => {
+                  onSelectPetType(item.type);
+                }}>
+                <View style={styles.petTypeItem}>
+                  <View
+                    style={[
+                      styles.petType,
+                      petType === item.type ? styles.selected : '',
+                    ]}>
+                    <Image style={styles.petTypeImage} source={item.imgSrc} />
+                  </View>
+                  <Text
+                    center
+                    style={petType === item.type ? styles.selectedColor : ''}>
+                    {item.text}
+                  </Text>
                 </View>
-                <Text
-                  center
-                  style={petType === item.type ? styles.selectedColor : ''}>
-                  {item.text}
-                </Text>
-              </View>
-            </TouchableOpacity>
-          ))}
-        </View>
+              </TouchableOpacity>
+            ))}
+          </View>
+        </ScrollView>
       </View>
       <DialogScreen
         visible={visible}
@@ -114,7 +117,7 @@ const AddNewPetStep2 = ({navigation}) => {
           style={styles.textFiled}
         />
       </DialogScreen>
-    </ScrollView>
+    </View>
   );
 };
 
@@ -134,6 +137,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     color: '#f7f7fb',
     fontSize: 72,
+    fontWeight: 'bold',
   },
   textWelcome: {
     color: '#1d1e2c',
