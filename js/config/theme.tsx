@@ -17,18 +17,24 @@ Colors.loadColors({
 });
 
 Typography.loadTypographies({
-  heading: {fontSize: 36, fontWeight: '600'},
-  subheading: {fontSize: 28, fontWeight: '500'},
-  body: {fontSize: 18, fontWeight: '400'},
-  link: {color: '#6266f9'},
-  fontBold: {fontWeight: 'bold'},
   'font-10': {fontSize: 10},
   'font-12': {fontSize: 12},
   'font-14': {fontSize: 14},
   'font-16': {fontSize: 16},
   'font-18': {fontSize: 18},
-  colorGreyLight: {color: '#69707f'},
-  color1d1e2c: {color: '#1d1e2c'},
+  'font-20': {fontSize: 20},
+  'font-22': {fontSize: 22},
+  'font-24': {fontSize: 24},
+  'font-26': {fontSize: 26},
+  'font-28': {fontSize: 28},
+  'font-30': {fontSize: 30},
+  heading: {fontSize: 36, fontWeight: '600'},
+  subheading: {fontSize: 28, fontWeight: '500'},
+  body: {fontSize: 18, fontWeight: '400'},
+  link: {color: '#6266f9'},
+  fontBold: {fontWeight: 'bold'},
+  greyFont: {color: '#69707f'},
+  blackFont: {color: '#1d1e2c'},
 });
 
 Spacings.loadSpacings({

@@ -10,7 +10,7 @@ import {
   Text,
   Button,
 } from 'react-native-ui-lib';
-import {p2d} from '~/js/utils/tools';
+import {b2d, p2d} from '~/js/utils/tools';
 // import _ from 'lodash';
 
 Assets.loadAssetsGroup('icons', {
@@ -28,16 +28,61 @@ const user_avatar = (info: any) => {
   const onAvatarPress = (item: any) => {
     console.log(item);
   };
+  const Live = () => (
+    <View
+      style={{
+        position: 'absolute',
+        left: 0,
+        top: 0,
+        backgroundColor: 'red',
+        height: 20,
+        width: 20,
+      }}>
+      <Text>Live</Text>
+    </View>
+  );
   // if (info.index === 0) {
   // }
   return (
-    <Avatar
-      containerStyle={
-        info.index === 0 ? styles.avatar_first_child : styles.avatar_child
-      }
-      {...info.item}
-      onPress={() => onAvatarPress(info.item)}
-    />
+    <View
+      centerH
+      style={[
+        info.index === 0 ? styles.avatar_first_child : styles.avatar_child,
+      ]}>
+      <View
+        center
+        style={{
+          height: info.item.size + p2d(8),
+          width: info.item.size + p2d(8),
+          borderRadius: 100,
+          borderColor: '#fa4169',
+          borderWidth: b2d(4),
+          borderStyle: 'solid',
+        }}>
+        <Avatar
+          backgroundColor="#ffffff"
+          animate={true}
+          customRibbon={() => (
+            <View
+              row
+              style={{
+                backgroundColor: 'red',
+                height: 200,
+                width: 200,
+              }}>
+              <Text font-12 greyFont>
+                洛杉矶
+              </Text>
+            </View>
+          )}
+          {...info.item}
+          onPress={() => onAvatarPress(info.item)}
+        />
+      </View>
+      <Text font-12 fontBlack>
+        Annie
+      </Text>
+    </View>
   );
 };
 
@@ -100,7 +145,7 @@ const renderDynamicCard = (info: any) => (
         />
         <View paddingL-16>
           <Text font-14>Annie</Text>
-          <Text font-12 colorGreyLight>
+          <Text font-12 greyFont>
             洛杉矶
           </Text>
         </View>
@@ -144,7 +189,7 @@ const renderDynamicCard = (info: any) => (
         <Text font-14>我的女儿和她的小宠物狗，你们觉得它好看吗? </Text>
       </View>
       <View marginT-13>
-        <Text font-10 colorGreyLight>
+        <Text font-10 greyFont>
           5分钟前
         </Text>
       </View>
@@ -163,60 +208,32 @@ const renderFriendList = () => (
 
 var user_info = [
   {
-    title: 'Big pimple',
-    size: 70,
-    backgroundColor: 'red',
+    size: p2d(112),
     imageSource: avatar_img,
-    badgeProps: {size: 14, borderWidth: 0},
-    badgePosition: 'TOP_LEFT',
   },
   {
-    title: 'Big pimple',
-    size: 70,
-    backgroundColor: 'red',
+    size: p2d(112),
     imageSource: avatar_img,
-    badgeProps: {size: 14, borderWidth: 0},
-    badgePosition: 'TOP_LEFT',
   },
   {
-    title: 'Big pimple',
-    size: 70,
-    backgroundColor: 'red',
+    size: p2d(112),
     imageSource: avatar_img,
-    badgeProps: {size: 14, borderWidth: 0},
-    badgePosition: 'TOP_LEFT',
   },
   {
-    title: 'Big pimple',
-    size: 70,
-    backgroundColor: 'red',
+    size: p2d(112),
     imageSource: avatar_img,
-    badgeProps: {size: 14, borderWidth: 1},
-    badgePosition: 'TOP_LEFT',
   },
   {
-    title: 'Big pimple',
-    size: 70,
-    backgroundColor: 'red',
+    size: p2d(112),
     imageSource: avatar_img,
-    badgeProps: {size: 14, borderWidth: 1},
-    badgePosition: 'TOP_LEFT',
   },
   {
-    title: 'Big pimple',
-    size: 70,
-    backgroundColor: 'red',
+    size: p2d(112),
     imageSource: avatar_img,
-    badgeProps: {size: 14, borderWidth: 0},
-    badgePosition: 'TOP_LEFT',
   },
   {
-    title: 'Big pimple',
-    size: 70,
-    backgroundColor: 'red',
+    size: p2d(112),
     imageSource: avatar_img,
-    badgeProps: {size: 14, borderWidth: 0},
-    badgePosition: 'TOP_LEFT',
   },
 ];
 const Dynamic = ({navigation}) => (

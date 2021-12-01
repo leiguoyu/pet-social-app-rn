@@ -1,13 +1,14 @@
 import * as React from 'react';
-import {StyleSheet} from 'react-native';
+import {StyleSheet, ImageBackground} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {createDrawerNavigator} from '@react-navigation/drawer';
+import {createDrawerNavigator, DrawerItemList} from '@react-navigation/drawer';
+import {SafeAreaView} from 'react-native-safe-area-context';
+import {Image, Assets, View, Button, Text} from 'react-native-ui-lib';
 import Dynamic from './tabs/Dynamic';
 import Profile from './tabs/Profile';
 import Notifications from './tabs/Notifications';
 import Bell from './tabs/Bell';
 import Me from './tabs/Me';
-import {Image, Assets, View, Button} from 'react-native-ui-lib';
 import {p2d} from '~/js/utils/tools';
 const Tab = createBottomTabNavigator();
 const Drawer = createDrawerNavigator();
@@ -20,9 +21,10 @@ Assets.loadAssetsGroup('icons', {
   ic_tab_add_post: require('~/js/images/ic_tab_add_post.png'),
   ic_tab_notification: require('~/js/images/ic_tab_notification.png'),
   Icons_24pt_ic_tab_profile: require('~/js/images/Icons_24pt_ic_tab_profile.png'),
+  drawer_bg: require('~/js/images/drawer_bg.png'),
 });
 
-const subHome = () => (
+const DynamicTab = () => (
   <Tab.Navigator
     initialRouteName="Dynamic"
     screenOptions={{
@@ -80,10 +82,16 @@ const subHome = () => (
 const Home = () => (
   <Drawer.Navigator
     initialRouteName="Home"
+    drawerContent={props => (
+      <SafeAreaView style={{backgroundColor: 'white', flex: 1}}>
+        <ImageBackground
+          source={Assets.icons.drawer_bg}
+          style={{height: '100%'}}>
+          <DrawerItemList {...props} />
+        </ImageBackground>
+      </SafeAreaView>
+    )}
     screenOptions={({navigation}) => ({
-      drawerStyle: {
-        backgroundColor: '#c6cbef',
-      },
       headerTitle: 'New Dynamic',
       headerShown: true,
       headerTitleAlign: 'center',
@@ -108,7 +116,7 @@ const Home = () => (
         </View>
       ),
     })}>
-    <Drawer.Screen name="Home" component={subHome} />
+    <Drawer.Screen name="Home" component={DynamicTab} />
   </Drawer.Navigator>
 );
 
