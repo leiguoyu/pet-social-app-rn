@@ -1,8 +1,6 @@
 import React, {useState} from 'react';
-import {StyleSheet, Alert} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {createDrawerNavigator} from '@react-navigation/drawer';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import SignUpStep1 from '../pages/register/SignUpStep1';
 import SignUpStep2 from '../pages/register/SignUpStep2';
@@ -15,7 +13,6 @@ import SampleDetails from '../pages/SampleDetails';
 import AddNewPetStep1 from '../pages/addNewPet/AddNewPetStep1';
 import AddNewPetStep2 from '../pages/addNewPet/AddNewPetStep2';
 import {Image, Assets, View, Button} from 'react-native-ui-lib';
-import {p2d} from '~/js/utils/tools';
 import AddNewPetStep3 from '../pages/addNewPet/AddNewPetStep3';
 
 import store from '~/js/redux/store';
@@ -24,7 +21,6 @@ Assets.loadAssetsGroup('icons', {
   ic_menu: require('~/js/images/ic_menu.png'),
   search_icon: require('~/js/images/ic_search_24.png'),
 });
-const Drawer = createDrawerNavigator();
 
 const Stack = createNativeStackNavigator();
 const no_token_page_JSX = (
@@ -140,60 +136,16 @@ const AppNavigator = () => {
   return (
     <SafeAreaProvider>
       <NavigationContainer>
-        <Drawer.Navigator
+        <Stack.Navigator
           initialRouteName={!user_token ? 'SignIn' : 'Home'}
-          screenOptions={({navigation}) => ({
-            drawerStyle: {
-              backgroundColor: '#c6cbef',
-            },
-            headerTitle: 'New Dynamic',
-            headerShown: true,
-            headerTitleAlign: 'center',
-            headerStyle: {
-              height: p2d(88), // Specify the height of your custom header
-            },
-            headerLeft: () => (
-              <View style={styles.menu_wrap}>
-                <Button
-                  link
-                  linkColor="#1d1e2c"
-                  iconSource={Assets.icons.ic_menu}
-                  onPress={() => {
-                    navigation.toggleDrawer();
-                  }}
-                />
-              </View>
-            ),
-            headerRight: () => (
-              <View style={styles.search_wrap}>
-                <Image style={styles.search_icon} assetName="search_icon" />
-              </View>
-            ),
-          })}>
-          <Drawer.Screen name="Dynamic" component={Home} />
-          <Drawer.Screen name="Profile" component={Sample} />
+          screenOptions={{
+            headerShadowVisible: false,
+          }}>
           {!user_token ? no_token_page_JSX : token_page_JSX}
-        </Drawer.Navigator>
+        </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaProvider>
   );
 };
-
-const styles = StyleSheet.create({
-  menu_wrap: {
-    marginLeft: p2d(36),
-  },
-  menu_icon: {
-    width: p2d(40),
-    height: p2d(32),
-  },
-  search_wrap: {
-    marginRight: p2d(36),
-  },
-  search_icon: {
-    width: p2d(40),
-    height: p2d(40),
-  },
-});
 
 export default AppNavigator;
