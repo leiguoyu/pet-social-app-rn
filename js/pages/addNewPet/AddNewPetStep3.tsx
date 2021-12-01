@@ -1,10 +1,5 @@
 import React, {useState} from 'react';
-import {
-  StyleSheet,
-  TouchableOpacity,
-  ScrollView,
-  SectionList,
-} from 'react-native';
+import {StyleSheet, FlatList, SectionList, Alert} from 'react-native';
 import {
   Assets,
   Spacings,
@@ -23,93 +18,121 @@ const DATA = [
       '阿费恩彼斯彻狗',
       '阿富汗猎犬',
       '艾德莱尔梗',
-      '秋田',
       '阿拉斯加克利凯',
       '阿拉斯加雪橇犬',
       '美国斗牛犬',
       '美英浣熊犬',
+      '澳洲丝毛梗',
+      '阿特西獵犬',
     ],
   },
   {
-    title: 'Sides',
-    data: ['French Fries', 'Onion Rings', 'Fried Shrimps'],
+    title: 'B',
+    data: [
+      '博美犬',
+      '北京犬',
+      '边界牧羊犬',
+      '巴哥犬',
+      '布烈塔尼獵犬',
+      '巴仙吉犬',
+      '比利时牧羊犬',
+      '布拉可犬',
+    ],
   },
   {
-    title: 'Drinks',
-    data: ['Water', 'Coke', 'Beer'],
+    title: 'C',
+    data: ['长须牧羊犬', '川东猎犬', '狮子狗'],
   },
   {
-    title: 'Desserts',
-    data: ['Cheese Cake', 'Ice Cream'],
+    title: 'D',
+    data: ['德国牧羊犬', '德国笃宾犬'],
   },
 ];
-
-const Item = ({title}) => (
-  <View style={styles.item}>
-    <Text style={styles.title}>{title}</Text>
-  </View>
-);
 
 const LEADING_ICON = {
   source: Assets.icons.search,
   style: {marginRight: Spacings.s3},
 };
 
-const AddNewPetStep3 = ({navigation}) => {
-  const [visible, setVisible] = useState(false);
+const AddNewPetStep3 = ({route, navigation}) => {
+  /*  Get the param */
+  const {petType} = route.params;
 
-  const [petType, setPetType] = useState('dog');
+  const [searchValue, setSearchValue] = useState('');
+  const [searchResult, setSearchResult] = useState([]);
 
-  const showDialog = () => {
-    setVisible(true);
+  const onChangeText = (text: string) => {
+    setSearchValue(text);
+    // 进行搜索
+    doSearch(text);
   };
 
-  const hideDialog = () => {
-    setVisible(false);
-  };
+  const doSearch = (text: string) => {};
 
-  const onConfirm = () => {
-    hideDialog();
-  };
+  const Item = ({title}) => (
+    <View style={styles.item}>
+      <Text
+        style={styles.title}
+        onPress={() => {
+          navigation.navigate('AddNewPetStep4');
+        }}>
+        {title}
+      </Text>
+    </View>
+  );
 
-  const onDismiss = () => {
-    hideDialog();
-  };
-
-  const onSelectPetType = (pet_type: string) => {
-    setPetType(pet_type);
-    if (pet_type === 'other') {
-      showDialog();
-    }
-  };
+  const renderItem = ({item}) => <Item title={item} />;
 
   return (
     <View style={styles.container} bg-white>
       <View flex style={styles.main}>
         <View marginT-50 style={styles.form}>
           <Text style={styles.textBackground}>NEWPET</Text>
-          <Text style={styles.textWelcome}>犬的种类</Text>
+          <Text style={styles.textWelcome}>{petType}的种类</Text>
         </View>
-        <View flexG top padding-18 marginH-32 br10 style={styles.shadow}>
+        <View padding-18 marginH-32 br10 style={styles.searchBox}>
           <TextField
             key="centered"
             placeholder="搜索..."
             hideUnderline
             leadingIcon={LEADING_ICON}
             enableErrors={false}
+            onChangeText={onChangeText}
+            value={searchValue}
           />
         </View>
         <View marginV-18 paddingH-32 right>
-          <Button link text14 label="不确定" />
+          <Button
+            link
+            text14
+            label="不确定"
+            onPress={() => {
+              navigation.navigate('AddNewPetStep4');
+            }}
+          />
         </View>
-        <View flexS centerV paddingH-32>
+        <View
+          flexS
+          paddingH-32
+          style={searchValue !== '' ? styles.hide : styles.show}>
           <SectionList
             sections={DATA}
             keyExtractor={(item, index) => item + index}
-            renderItem={({item}) => <Item title={item} />}
+            renderItem={renderItem}
             renderSectionHeader={({section: {title}}) => (
               <Text style={styles.header}>{title}</Text>
             )}
+          />
+        </View>
+        <View
+          flexS
+          paddingH-32
+          style={searchValue !== '' ? styles.show : styles.hide}>
+          <Text style={styles.header}>最佳匹配</Text>
+          <FlatList
+            data={searchResult}
+            renderItem={renderItem}
+            keyExtractor={(item, index) => item + index}
           />
         </View>
       </View>
@@ -123,7 +146,6 @@ const styles = StyleSheet.create({
   },
   main: {
     flex: 1,
-    justifyContent: 'space-between',
   },
   form: {
     paddingLeft: 32,
@@ -142,7 +164,7 @@ const styles = StyleSheet.create({
     marginTop: 48,
     marginBottom: 41,
   },
-  shadow: {
+  searchBox: {
     elevation: 2,
     shadowOffset: {width: 4, height: 4},
     shadowColor: 'black',
@@ -160,6 +182,12 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 14,
     color: 'rgb(29,30,44)',
+  },
+  hide: {
+    display: 'none',
+  },
+  show: {
+    display: 'flex',
   },
 });
 

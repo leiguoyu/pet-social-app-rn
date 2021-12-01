@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
-import {StyleSheet, TouchableOpacity, ScrollView} from 'react-native';
+import {StyleSheet, TouchableOpacity, ScrollView, Alert} from 'react-native';
 import {View, TextField, Text, Image} from 'react-native-ui-lib';
+import {p2d} from '~/js/utils/tools';
 import DialogScreen from '~/js/components_presentation/DialogScreen';
 
 const petTypes = [
@@ -47,6 +48,8 @@ const AddNewPetStep2 = ({navigation}) => {
 
   const [petType, setPetType] = useState('');
 
+  const [otherTypeValue, onChangeText] = useState('');
+
   const showDialog = () => {
     setVisible(true);
   };
@@ -56,6 +59,12 @@ const AddNewPetStep2 = ({navigation}) => {
   };
 
   const onConfirm = () => {
+    if (!otherTypeValue) {
+      return;
+    }
+    navigation.navigate('AddNewPetStep3', {
+      petType: otherTypeValue,
+    });
     hideDialog();
   };
 
@@ -63,12 +72,16 @@ const AddNewPetStep2 = ({navigation}) => {
     hideDialog();
   };
 
-  const onSelectPetType = (pet_type: string) => {
-    setPetType(pet_type);
-    navigation.navigate('AddNewPetStep3');
-    if (pet_type === 'other') {
+  const onSelectPetType = (id: number) => {
+    setPetType(petTypes[id].type);
+    // 其它
+    if (id === 5) {
       showDialog();
+      return;
     }
+    navigation.navigate('AddNewPetStep3', {
+      petType: petTypes[id].text,
+    });
   };
 
   return (
@@ -84,7 +97,7 @@ const AddNewPetStep2 = ({navigation}) => {
               <TouchableOpacity
                 key={item.id}
                 onPress={() => {
-                  onSelectPetType(item.type);
+                  onSelectPetType(item.id);
                 }}>
                 <View style={styles.petTypeItem}>
                   <View
@@ -115,6 +128,8 @@ const AddNewPetStep2 = ({navigation}) => {
           hideUnderline
           enableErrors={false}
           style={styles.textFiled}
+          onChangeText={(text: string) => onChangeText(text)}
+          value={otherTypeValue}
         />
       </DialogScreen>
     </View>
@@ -148,7 +163,7 @@ const styles = StyleSheet.create({
   },
   petType: {
     padding: 4,
-    borderWidth: 8,
+    borderWidth: p2d(8),
     borderColor: 'transparent',
     borderRadius: 100,
   },
@@ -174,7 +189,7 @@ const styles = StyleSheet.create({
   },
   textFiled: {
     width: '100%',
-    borderWidth: 1,
+    borderWidth: p2d(1),
     borderColor: '#6266f9',
     padding: 17,
     borderRadius: 5,
