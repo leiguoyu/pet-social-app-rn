@@ -14,6 +14,7 @@ import AddNewPetStep1 from '../pages/addNewPet/AddNewPetStep1';
 import AddNewPetStep2 from '../pages/addNewPet/AddNewPetStep2';
 import {Image, Assets, View, Button} from 'react-native-ui-lib';
 import AddNewPetStep3 from '../pages/addNewPet/AddNewPetStep3';
+import AddNewPetStep4 from '../pages/addNewPet/AddNewPetStep4';
 
 import store from '~/js/redux/store';
 
@@ -87,6 +88,15 @@ const no_token_page_JSX = (
     <Stack.Screen
       name="AddNewPetStep3"
       component={AddNewPetStep3}
+      options={{
+        title: '',
+        headerShown: true, // 显示header
+        headerTransparent: true, // 设置header绝对定位且背景透明
+      }}
+    />
+    <Stack.Screen
+      name="AddNewPetStep4"
+      component={AddNewPetStep4}
       options={{
         title: '',
         headerShown: true, // 显示header
