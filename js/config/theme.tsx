@@ -5,6 +5,7 @@ import {
   Spacings,
   ThemeManager,
 } from 'react-native-ui-lib';
+import {p2d} from '~/js/utils/tools';
 
 Colors.loadColors({
   primaryColor: '#fa4169',
@@ -14,20 +15,37 @@ Colors.loadColors({
   errorColor: '#E63B2E',
   successColor: '#ADC76F',
   warnColor: '#FF963C',
+  blackColor: '#1d1e2c',
+  geryColor: '#69707f',
 });
 
+// 重置padingT和marginT
+// for (var px_size = 1; px_size <= 200; px_size++) {
+//   Typography.loadTypographies({
+//     ['padding-' + px_size]: {padding: p2d(px_size)},
+//     ['paddingL-' + px_size]: {paddingLeft: p2d(px_size)},
+//     ['paddingT-' + px_size]: {paddingTop: p2d(px_size)},
+//     ['paddingR-' + px_size]: {paddingRight: p2d(px_size)},
+//     ['paddingB-' + px_size]: {paddingBottom: p2d(px_size)},
+//     ['margin-' + px_size]: {margin: p2d(px_size)},
+//     ['marginL-' + px_size]: {marginLeft: p2d(px_size)},
+//     ['marginT-' + px_size]: {marginTop: p2d(px_size)},
+//     ['marginR-' + px_size]: {marginRight: p2d(px_size)},
+//     ['marginB-' + px_size]: {marginBottom: p2d(px_size)},
+//   });
+// }
+
 Typography.loadTypographies({
-  'font-10': {fontSize: 10},
-  'font-12': {fontSize: 12},
-  'font-14': {fontSize: 14},
-  'font-16': {fontSize: 16},
-  'font-18': {fontSize: 18},
-  'font-20': {fontSize: 20},
-  'font-22': {fontSize: 22},
-  'font-24': {fontSize: 24},
-  'font-26': {fontSize: 26},
-  'font-28': {fontSize: 28},
-  'font-30': {fontSize: 30},
+  'font-12': {fontSize: p2d(12)},
+  'font-14': {fontSize: p2d(14)},
+  'font-16': {fontSize: p2d(16)},
+  'font-18': {fontSize: p2d(18)},
+  'font-20': {fontSize: p2d(20)},
+  'font-22': {fontSize: p2d(22)},
+  'font-24': {fontSize: p2d(24)},
+  'font-26': {fontSize: p2d(26)},
+  'font-28': {fontSize: p2d(28)},
+  'font-30': {fontSize: p2d(30)},
   heading: {fontSize: 36, fontWeight: '600'},
   subheading: {fontSize: 28, fontWeight: '500'},
   body: {fontSize: 18, fontWeight: '400'},

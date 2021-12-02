@@ -1,5 +1,6 @@
 import * as React from 'react';
 import {StyleSheet, StatusBar, FlatList} from 'react-native';
+import {color} from 'react-native-reanimated';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {
   Colors,
@@ -10,6 +11,7 @@ import {
   Text,
   Button,
 } from 'react-native-ui-lib';
+import PetAvatar from '~/js/components_presentation/PetAvatar';
 import {b2d, p2d} from '~/js/utils/tools';
 // import _ from 'lodash';
 
@@ -20,67 +22,29 @@ Assets.loadAssetsGroup('icons', {
   dyna_img: require('~/js/images/img_post.png'),
   ic_post_option: require('~/js/images/ic_post_option.png'),
   ic_bookmark: require('~/js/images/Bookmark.png'),
+  ic_add_story: require('~/js/images/ic_add_story.png'),
 });
 const avatar_img = require('~/js/images/avatar_img.png');
 // const dyna_img = require('~/js/images/img_post.png');
 const user_avatar = (info: any) => {
-  console.log(info);
-  const onAvatarPress = (item: any) => {
-    console.log(item);
-  };
-  const Live = () => (
-    <View
-      style={{
-        position: 'absolute',
-        left: 0,
-        top: 0,
-        backgroundColor: 'red',
-        height: 20,
-        width: 20,
-      }}>
-      <Text>Live</Text>
-    </View>
-  );
-  // if (info.index === 0) {
-  // }
+  const onAvatarPress = (item: any) => {};
+
   return (
     <View
       centerH
       style={[
         info.index === 0 ? styles.avatar_first_child : styles.avatar_child,
       ]}>
-      <View
-        center
-        style={{
-          height: info.item.size + p2d(8),
-          width: info.item.size + p2d(8),
-          borderRadius: 100,
-          borderColor: '#fa4169',
-          borderWidth: b2d(4),
-          borderStyle: 'solid',
-        }}>
-        <Avatar
+      <View>
+        <PetAvatar
           backgroundColor="#ffffff"
           animate={true}
-          customRibbon={() => (
-            <View
-              row
-              style={{
-                backgroundColor: 'red',
-                height: 200,
-                width: 200,
-              }}>
-              <Text font-12 greyFont>
-                洛杉矶
-              </Text>
-            </View>
-          )}
           {...info.item}
           onPress={() => onAvatarPress(info.item)}
         />
       </View>
-      <Text font-12 fontBlack>
-        Annie
+      <Text marginT-6 font-24 fontBlack>
+        Andy
       </Text>
     </View>
   );
@@ -137,15 +101,15 @@ const renderDynamicCard = (info: any) => (
     style={{marginBottom: 15}}
     onPress={() => console.log('press on a card')}>
     <View flex spread row paddingL-16 paddingR-16 paddingB-9>
-      <View row>
+      <View row center>
         <Avatar
           size={32}
           imageSource={avatar_img}
           onPress={() => console.log('press on a card')}
         />
         <View paddingL-16>
-          <Text font-14>Annie</Text>
-          <Text font-12 greyFont>
+          <Text font-28>Annie</Text>
+          <Text font-24 greyFont>
             洛杉矶
           </Text>
         </View>
@@ -186,10 +150,10 @@ const renderDynamicCard = (info: any) => (
         />
       </View>
       <View marginT-13>
-        <Text font-14>我的女儿和她的小宠物狗，你们觉得它好看吗? </Text>
+        <Text font-28>我的女儿和她的小宠物狗，你们觉得它好看吗? </Text>
       </View>
       <View marginT-13>
-        <Text font-10 greyFont>
+        <Text font-20 greyFont>
           5分钟前
         </Text>
       </View>
@@ -210,6 +174,14 @@ var user_info = [
   {
     size: p2d(112),
     imageSource: avatar_img,
+    is_friend: false,
+    is_online: true,
+  },
+  {
+    size: p2d(112),
+    imageSource: avatar_img,
+    is_online: true,
+    is_live: true,
   },
   {
     size: p2d(112),
@@ -222,10 +194,7 @@ var user_info = [
   {
     size: p2d(112),
     imageSource: avatar_img,
-  },
-  {
-    size: p2d(112),
-    imageSource: avatar_img,
+    is_online: true,
   },
   {
     size: p2d(112),
