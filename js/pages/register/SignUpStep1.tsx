@@ -5,9 +5,10 @@ import {View, TextField, Text, Button, Image} from 'react-native-ui-lib';
 const SignUpStep1 = ({navigation}) => (
   <ImageBackground
     source={require('../../images/BG.png')}
+    bg-white
     style={styles.container}>
     <View flex style={styles.main}>
-      <View marginT-50 style={styles.form}>
+      <View marginT-80 style={styles.form}>
         <Text style={styles.textBackground}>SIGNUP</Text>
         <Text style={styles.textWelcome}>欢迎使用 Pet Lover!</Text>
         <View center>

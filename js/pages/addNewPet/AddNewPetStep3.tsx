@@ -105,7 +105,7 @@ const AddNewPetStep3 = ({route, navigation}) => {
   return (
     <View style={styles.container} bg-white>
       <View flex style={styles.main}>
-        <View marginT-50 style={styles.form}>
+        <View marginT-80 style={styles.form}>
           <Text style={styles.textBackground}>NEWPET</Text>
           <Text style={styles.textWelcome}>{petType}的种类</Text>
         </View>

@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import {StyleSheet, TouchableOpacity, ScrollView, Alert} from 'react-native';
-import {View, TextField, Text, Image} from 'react-native-ui-lib';
+import {StyleSheet, TouchableOpacity, ScrollView} from 'react-native';
+import {Colors, View, TextField, Text, Image} from 'react-native-ui-lib';
 import {p2d} from '~/js/utils/tools';
 import DialogScreen from '~/js/components_presentation/DialogScreen';
 
@@ -87,7 +87,7 @@ const AddNewPetStep2 = ({navigation}) => {
   return (
     <View style={styles.container} bg-white>
       <View flex style={styles.main}>
-        <View marginT-50 style={styles.form}>
+        <View marginT-80 style={styles.form}>
           <Text style={styles.textBackground}>NEWPET</Text>
           <Text style={styles.textWelcome}>宠物类型</Text>
         </View>
@@ -103,13 +103,15 @@ const AddNewPetStep2 = ({navigation}) => {
                   <View
                     style={[
                       styles.petType,
-                      petType === item.type ? styles.selected : '',
+                      petType === item.type ? styles.selected : styles.none,
                     ]}>
                     <Image style={styles.petTypeImage} source={item.imgSrc} />
                   </View>
                   <Text
                     center
-                    style={petType === item.type ? styles.selectedColor : ''}>
+                    color={
+                      petType === item.type ? Colors.primaryColor : Colors.black
+                    }>
                     {item.text}
                   </Text>
                 </View>
@@ -168,8 +170,8 @@ const styles = StyleSheet.create({
     borderRadius: 100,
   },
   petTypeImage: {
-    width: 96,
-    height: 96,
+    width: p2d(192),
+    height: p2d(192),
   },
   petTypeBox: {
     flexWrap: 'wrap',
@@ -194,6 +196,7 @@ const styles = StyleSheet.create({
     padding: 17,
     borderRadius: 5,
   },
+  none: {},
 });
 
 export default AddNewPetStep2;
