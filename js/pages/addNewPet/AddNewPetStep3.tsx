@@ -8,7 +8,7 @@ import {
   Text,
   Button,
 } from 'react-native-ui-lib';
-import DialogScreen from '~/js/components_presentation/DialogScreen';
+import _ from 'lodash';
 
 const DATA = [
   {
@@ -54,6 +54,16 @@ const LEADING_ICON = {
   style: {marginRight: Spacings.s3},
 };
 
+const getPetArray = () => {
+  let array = [];
+  _(DATA).forEach(function (value) {
+    array = _.concat(array, value.data);
+  });
+  return array;
+};
+
+const PETARRAY = getPetArray();
+
 const AddNewPetStep3 = ({route, navigation}) => {
   /*  Get the param */
   const {petType} = route.params;
@@ -67,7 +77,16 @@ const AddNewPetStep3 = ({route, navigation}) => {
     doSearch(text);
   };
 
-  const doSearch = (text: string) => {};
+  const doSearch = (text: string) => {
+    let array = [];
+    for (let index = 0; index < PETARRAY.length; index++) {
+      const element = PETARRAY[index];
+      if (element.indexOf(text) !== -1) {
+        array.push(element);
+      }
+    }
+    setSearchResult(array);
+  };
 
   const Item = ({title}) => (
     <View style={styles.item}>
