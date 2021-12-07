@@ -1,6 +1,13 @@
 import React, {useState} from 'react';
-import {StyleSheet, TouchableOpacity, ScrollView} from 'react-native';
-import {Colors, View, TextField, Text, Image} from 'react-native-ui-lib';
+import {StyleSheet, ScrollView} from 'react-native';
+import {
+  Colors,
+  TouchableOpacity,
+  View,
+  TextField,
+  Text,
+  Image,
+} from 'react-native-ui-lib';
 import {p2d} from '~/js/utils/tools';
 import DialogScreen from '~/js/components_presentation/DialogScreen';
 
@@ -88,7 +95,7 @@ const AddNewPetStep2 = ({navigation}) => {
     <View style={styles.container} bg-white>
       <View flex style={styles.main}>
         <View marginT-80 style={styles.form}>
-          <Text style={styles.textBackground}>NEWPET</Text>
+          <Text style={styles.textBackground}>NEW PET</Text>
           <Text style={styles.textWelcome}>宠物类型</Text>
         </View>
         <ScrollView>
@@ -153,7 +160,7 @@ const styles = StyleSheet.create({
   textBackground: {
     position: 'absolute',
     color: '#f7f7fb',
-    fontSize: 72,
+    fontSize: p2d(144),
     fontWeight: 'bold',
   },
   textWelcome: {

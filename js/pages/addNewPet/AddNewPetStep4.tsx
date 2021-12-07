@@ -1,6 +1,14 @@
 import React, {useState} from 'react';
-import {StyleSheet, TouchableOpacity} from 'react-native';
-import {Colors, Assets, View, Text, Button, Image} from 'react-native-ui-lib';
+import {StyleSheet} from 'react-native';
+import {
+  Colors,
+  Assets,
+  TouchableOpacity,
+  View,
+  Text,
+  Button,
+  Image,
+} from 'react-native-ui-lib';
 import {p2d} from '~/js/utils/tools';
 
 const AddNewPetStep4 = ({navigation}) => {
@@ -9,7 +17,7 @@ const AddNewPetStep4 = ({navigation}) => {
     <View style={styles.container} bg-white>
       <View flex style={styles.main}>
         <View marginT-80 style={styles.form}>
-          <Text style={styles.textBackground}>NEWPET</Text>
+          <Text style={styles.textBackground}>NEW PET</Text>
           <Text style={styles.textWelcome}>性别</Text>
         </View>
         <View row center paddingH-32>
@@ -82,12 +90,18 @@ const AddNewPetStep4 = ({navigation}) => {
               backgroundLightBlue
               label="是的"
               style={styles.button}
+              onPress={() => {
+                navigation.navigate('AddNewPetStep5');
+              }}
             />
             <Button
               marginT-42
               backgroundRed
               label="还没"
               style={styles.button}
+              onPress={() => {
+                navigation.navigate('AddNewPetStep5');
+              }}
             />
           </View>
         </View>
@@ -110,7 +124,7 @@ const styles = StyleSheet.create({
   textBackground: {
     position: 'absolute',
     color: '#f7f7fb',
-    fontSize: 72,
+    fontSize: p2d(144),
     fontWeight: 'bold',
   },
   textWelcome: {

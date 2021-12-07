@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {StyleSheet, ImageBackground} from 'react-native';
 import {View, TextField, Text, Button, Image} from 'react-native-ui-lib';
+import {p2d} from '~/js/utils/tools';
 
 const SignUpStep1 = ({navigation}) => (
   <ImageBackground
@@ -63,7 +64,7 @@ const styles = StyleSheet.create({
   textBackground: {
     position: 'absolute',
     color: '#f7f7fb',
-    fontSize: 72,
+    fontSize: p2d(144),
     fontWeight: 'bold',
   },
   textWelcome: {

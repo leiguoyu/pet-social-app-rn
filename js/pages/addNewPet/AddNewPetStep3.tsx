@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {StyleSheet, FlatList, SectionList, Alert} from 'react-native';
+import {StyleSheet, FlatList, SectionList} from 'react-native';
 import {
   Assets,
   Spacings,
@@ -9,6 +9,7 @@ import {
   Button,
 } from 'react-native-ui-lib';
 import _ from 'lodash';
+import {p2d} from '~/js/utils/tools';
 
 const DATA = [
   {
@@ -106,7 +107,7 @@ const AddNewPetStep3 = ({route, navigation}) => {
     <View style={styles.container} bg-white>
       <View flex style={styles.main}>
         <View marginT-80 style={styles.form}>
-          <Text style={styles.textBackground}>NEWPET</Text>
+          <Text style={styles.textBackground}>NEW PET</Text>
           <Text style={styles.textWelcome}>{petType}的种类</Text>
         </View>
         <View padding-18 marginH-32 br10 style={styles.searchBox}>
@@ -173,7 +174,7 @@ const styles = StyleSheet.create({
   textBackground: {
     position: 'absolute',
     color: '#f7f7fb',
-    fontSize: 72,
+    fontSize: p2d(144),
     fontWeight: 'bold',
   },
   textWelcome: {
