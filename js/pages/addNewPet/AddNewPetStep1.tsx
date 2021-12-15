@@ -1,12 +1,13 @@
 import * as React from 'react';
 import {StyleSheet} from 'react-native';
 import {View, TextField, Text, Button, Image} from 'react-native-ui-lib';
+import {p2d} from '~/js/utils/tools';
 
 const AddNewPetStep1 = ({navigation}) => (
   <View style={styles.container} bg-white>
     <View flex style={styles.main}>
-      <View marginT-50 style={styles.form}>
-        <Text style={styles.textBackground}>NEWPET</Text>
+      <View marginT-80 style={styles.form}>
+        <Text style={styles.textBackground}>NEW PET</Text>
         <Text style={styles.textWelcome}>宠物名&头像</Text>
         <View center>
           <Image
@@ -56,7 +57,7 @@ const styles = StyleSheet.create({
   textBackground: {
     position: 'absolute',
     color: '#f7f7fb',
-    fontSize: 72,
+    fontSize: p2d(144),
     fontWeight: 'bold',
   },
   textWelcome: {

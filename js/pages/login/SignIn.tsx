@@ -12,6 +12,7 @@ const SignIn = ({navigation}) => {
   return (
     <ImageBackground
       source={require('../../images/BG.png')}
+      bg-white
       style={styles.container}>
       <StatusBar
         translucent={true}

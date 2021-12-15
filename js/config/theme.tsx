@@ -62,7 +62,8 @@ Spacings.loadSpacings({
 });
 
 Assets.loadAssetsGroup('icons', {
-  search: require('../../js/images/ic_search_24.png'),
+  search: require('~/js/images/ic_search_24.png'),
+  arrow: require('~/js/images/ic_arr.png'),
 });
 
 // with plain object

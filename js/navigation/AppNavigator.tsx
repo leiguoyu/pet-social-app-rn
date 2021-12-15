@@ -15,6 +15,8 @@ import AddNewPetStep2 from '../pages/addNewPet/AddNewPetStep2';
 import {Image, Assets, View, Button} from 'react-native-ui-lib';
 import AddNewPetStep3 from '../pages/addNewPet/AddNewPetStep3';
 import AddNewPetStep4 from '../pages/addNewPet/AddNewPetStep4';
+import AddNewPetStep5 from '../pages/addNewPet/AddNewPetStep5';
+import AddNewPetStep6 from '../pages/addNewPet/AddNewPetStep6';
 
 import store from '~/js/redux/store';
 
@@ -103,6 +105,24 @@ const no_token_page_JSX = (
         headerTransparent: true, // 设置header绝对定位且背景透明
       }}
     />
+    <Stack.Screen
+      name="AddNewPetStep5"
+      component={AddNewPetStep5}
+      options={{
+        title: '',
+        headerShown: true, // 显示header
+        headerTransparent: true, // 设置header绝对定位且背景透明
+      }}
+    />
+    <Stack.Screen
+      name="AddNewPetStep6"
+      component={AddNewPetStep6}
+      options={{
+        title: '',
+        headerShown: true, // 显示header
+        headerTransparent: true, // 设置header绝对定位且背景透明
+      }}
+    />
   </>
 );
 const token_page_JSX = (
@@ -151,7 +171,7 @@ const AppNavigator = () => {
           screenOptions={{
             headerShadowVisible: false,
           }}>
-          {!user_token ? token_page_JSX : token_page_JSX}
+          {!user_token ? no_token_page_JSX : token_page_JSX}
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaProvider>

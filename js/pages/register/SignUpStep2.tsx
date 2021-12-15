@@ -1,13 +1,15 @@
 import * as React from 'react';
 import {StyleSheet, ImageBackground} from 'react-native';
 import {View, TextField, Text, Button} from 'react-native-ui-lib';
+import {p2d} from '~/js/utils/tools';
 
 const SignUpStep2 = ({navigation}) => (
   <ImageBackground
     source={require('../../images/BG.png')}
+    bg-white
     style={styles.container}>
     <View flex style={styles.main}>
-      <View marginT-50 style={styles.form}>
+      <View marginT-80 style={styles.form}>
         <Text style={styles.textBackground}>SIGNUP</Text>
         <Text style={styles.textWelcome}>欢迎使用</Text>
         <View style={styles.textFieldBox}>
@@ -65,7 +67,7 @@ const styles = StyleSheet.create({
   textBackground: {
     position: 'absolute',
     color: '#f7f7fb',
-    fontSize: 72,
+    fontSize: p2d(144),
     fontWeight: 'bold',
   },
   textWelcome: {

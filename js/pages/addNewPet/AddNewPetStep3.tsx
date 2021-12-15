@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {StyleSheet, FlatList, SectionList, Alert} from 'react-native';
+import {StyleSheet, FlatList, SectionList} from 'react-native';
 import {
   Assets,
   Spacings,
@@ -8,7 +8,8 @@ import {
   Text,
   Button,
 } from 'react-native-ui-lib';
-import DialogScreen from '~/js/components_presentation/DialogScreen';
+import _ from 'lodash';
+import {p2d} from '~/js/utils/tools';
 
 const DATA = [
   {
@@ -54,6 +55,16 @@ const LEADING_ICON = {
   style: {marginRight: Spacings.s3},
 };
 
+const getPetArray = () => {
+  let array = [];
+  _(DATA).forEach(function (value) {
+    array = _.concat(array, value.data);
+  });
+  return array;
+};
+
+const PETARRAY = getPetArray();
+
 const AddNewPetStep3 = ({route, navigation}) => {
   /*  Get the param */
   const {petType} = route.params;
@@ -67,7 +78,16 @@ const AddNewPetStep3 = ({route, navigation}) => {
     doSearch(text);
   };
 
-  const doSearch = (text: string) => {};
+  const doSearch = (text: string) => {
+    let array = [];
+    for (let index = 0; index < PETARRAY.length; index++) {
+      const element = PETARRAY[index];
+      if (element.indexOf(text) !== -1) {
+        array.push(element);
+      }
+    }
+    setSearchResult(array);
+  };
 
   const Item = ({title}) => (
     <View style={styles.item}>
@@ -86,8 +106,8 @@ const AddNewPetStep3 = ({route, navigation}) => {
   return (
     <View style={styles.container} bg-white>
       <View flex style={styles.main}>
-        <View marginT-50 style={styles.form}>
-          <Text style={styles.textBackground}>NEWPET</Text>
+        <View marginT-80 style={styles.form}>
+          <Text style={styles.textBackground}>NEW PET</Text>
           <Text style={styles.textWelcome}>{petType}的种类</Text>
         </View>
         <View padding-18 marginH-32 br10 style={styles.searchBox}>
@@ -154,7 +174,7 @@ const styles = StyleSheet.create({
   textBackground: {
     position: 'absolute',
     color: '#f7f7fb',
-    fontSize: 72,
+    fontSize: p2d(144),
     fontWeight: 'bold',
   },
   textWelcome: {
