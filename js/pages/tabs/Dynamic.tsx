@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, {useState} from 'react';
 import {StyleSheet, StatusBar, FlatList} from 'react-native';
 import {color} from 'react-native-reanimated';
 import {SafeAreaView} from 'react-native-safe-area-context';
@@ -12,8 +12,8 @@ import {
   Button,
 } from 'react-native-ui-lib';
 import PetAvatar from '~/js/components_presentation/PetAvatar';
+import RenderWriteCard from '~/js/components_presentation/WriteCard';
 import {b2d, p2d} from '~/js/utils/tools';
-// import _ from 'lodash';
 
 Assets.loadAssetsGroup('icons', {
   ic_msg: require('~/js/images/ic_msg.png'),
@@ -24,11 +24,147 @@ Assets.loadAssetsGroup('icons', {
   ic_bookmark: require('~/js/images/Bookmark.png'),
   ic_add_story: require('~/js/images/ic_add_story.png'),
 });
-const avatar_img = require('~/js/images/avatar_img.png');
-// const dyna_img = require('~/js/images/img_post.png');
-const user_avatar = (info: any) => {
-  const onAvatarPress = (item: any) => {};
 
+const write_data = [
+  {
+    pic: [
+      'https://gimg3.baidu.com/search/src=http%3A%2F%2Fpics2.baidu.com%2Ffeed%2F4610b912c8fcc3ce969bcf08285b5e81d43f205d.jpeg',
+    ],
+    video: '',
+    avatar: 'https://randomuser.me/api/portraits/women/24.jpg',
+    name: 'Annie',
+    timestamp: 123456789,
+    description: '我的女儿和她的宠物狗，你们觉得它好看吗？',
+    likes: 2500,
+    comments: 225,
+    is_like: true,
+    is_collecting: false,
+    region: 1,
+  },
+  {
+    pic: [
+      'https://gimg3.baidu.com/search/src=http%3A%2F%2Fpics2.baidu.com%2Ffeed%2F4610b912c8fcc3ce969bcf08285b5e81d43f205d.jpeg',
+    ],
+    video: '',
+    avatar: 'https://randomuser.me/api/portraits/women/24.jpg',
+    name: 'Annie',
+    timestamp: 123456789,
+    description: '我的女儿和她的宠物狗，你们觉得它好看吗？',
+    likes: 2500,
+    comments: 425,
+    is_collecting: true,
+    is_like: true,
+    region: 1,
+  },
+  {
+    pic: [
+      'https://gimg3.baidu.com/search/src=http%3A%2F%2Fpics2.baidu.com%2Ffeed%2F4610b912c8fcc3ce969bcf08285b5e81d43f205d.jpeg',
+    ],
+    video: '',
+    avatar: 'https://randomuser.me/api/portraits/women/24.jpg',
+    name: 'Annie',
+    timestamp: 123456789,
+    description: '我的女儿和她的宠物狗，你们觉得它好看吗？',
+    likes: 2500,
+    comments: 425,
+    is_collecting: true,
+    is_like: true,
+    region: 1,
+  },
+  {
+    pic: [
+      'https://gimg3.baidu.com/search/src=http%3A%2F%2Fpics2.baidu.com%2Ffeed%2F4610b912c8fcc3ce969bcf08285b5e81d43f205d.jpeg',
+    ],
+    video: '',
+    avatar: 'https://randomuser.me/api/portraits/women/24.jpg',
+    name: 'Annie',
+    timestamp: 123456789,
+    description: '我的女儿和她的宠物狗，你们觉得它好看吗？',
+    likes: 2500,
+    comments: 425,
+    is_collecting: true,
+    is_like: true,
+    region: 1,
+  },
+  {
+    pic: [
+      'https://gimg3.baidu.com/search/src=http%3A%2F%2Fpics2.baidu.com%2Ffeed%2F4610b912c8fcc3ce969bcf08285b5e81d43f205d.jpeg',
+    ],
+    video: '',
+    avatar: 'https://randomuser.me/api/portraits/women/24.jpg',
+    name: 'Annie',
+    timestamp: 123456789,
+    description: '我的女儿和她的宠物狗，你们觉得它好看吗？',
+    likes: 2500,
+    comments: 425,
+    is_collecting: true,
+    is_like: true,
+    region: 1,
+  },
+];
+
+const user_info = [
+  {
+    size: p2d(112),
+    source: {
+      uri: 'https://randomuser.me/api/portraits/women/24.jpg',
+    },
+    is_friend: false,
+    is_online: true,
+  },
+  {
+    size: p2d(112),
+    source: {
+      uri: 'https://randomuser.me/api/portraits/women/24.jpg',
+    },
+    is_online: true,
+    is_live: true,
+  },
+  {
+    size: p2d(112),
+    source: {
+      uri: 'https://randomuser.me/api/portraits/women/24.jpg',
+    },
+  },
+  {
+    size: p2d(112),
+    source: {
+      uri: 'https://randomuser.me/api/portraits/women/24.jpg',
+    },
+  },
+  {
+    size: p2d(112),
+    source: {
+      uri: 'https://randomuser.me/api/portraits/women/24.jpg',
+    },
+    is_online: true,
+  },
+  {
+    size: p2d(112),
+    source: {
+      uri: 'https://randomuser.me/api/portraits/women/24.jpg',
+    },
+  },
+  {
+    size: p2d(112),
+    source: {
+      uri: 'https://randomuser.me/api/portraits/women/24.jpg',
+    },
+  },
+];
+
+const RenderFriendList = () => (
+  <FlatList
+    showsHorizontalScrollIndicator={false}
+    horizontal={true}
+    data={user_info}
+    renderItem={UserAvatar}
+  />
+);
+
+const UserAvatar = (info: any) => {
+  const onAvatarPress = (item: any) => {};
+  // const [isEnabled, setIsEnabled] = useState('');
   return (
     <View
       centerH
@@ -50,171 +186,16 @@ const user_avatar = (info: any) => {
   );
 };
 
-let dynamic_info = [
-  {
-    coverImage: Assets.icons.dyna_img,
-    title: '11',
-    status: '22',
-    timestamp: '33',
-    description: '44',
-    likes: '55',
-  },
-  {
-    coverImage: Assets.icons.dyna_img,
-    title: '11',
-    status: '22',
-    timestamp: '33',
-    description: '44',
-    likes: '55',
-  },
-  {
-    coverImage: Assets.icons.dyna_img,
-    title: '11',
-    status: '22',
-    timestamp: '33',
-    description: '44',
-    likes: '55',
-  },
-  {
-    coverImage: Assets.icons.dyna_img,
-    title: '11',
-    status: '22',
-    timestamp: '33',
-    description: '44',
-    likes: '55',
-  },
-  {
-    coverImage: Assets.icons.dyna_img,
-    title: '11',
-    status: '22',
-    timestamp: '33',
-    description: '44',
-    likes: '55',
-  },
-];
-
-const renderDynamicCard = (info: any) => (
-  <Card
-    key={info.index}
-    borderRadius={0}
-    enableShadow={false}
-    style={{marginBottom: 15}}
-    onPress={() => console.log('press on a card')}>
-    <View flex spread row paddingL-16 paddingR-16 paddingB-9>
-      <View row center>
-        <Avatar
-          size={32}
-          imageSource={avatar_img}
-          onPress={() => console.log('press on a card')}
-        />
-        <View paddingL-16>
-          <Text font-28>Annie</Text>
-          <Text font-24 greyFont>
-            洛杉矶
-          </Text>
-        </View>
-      </View>
-      <Button
-        linkColor="#1d1e2c"
-        link
-        iconSource={Assets.icons.ic_post_option}
-      />
-    </View>
-    <Card.Section
-      imageSource={info.item.coverImage}
-      imageStyle={{height: 340, width: '100%'}}
-    />
-    <View paddingR-16 paddingL-16 paddingT-9>
-      <View flex spread row>
-        <View row marginL-0>
-          <Button
-            link
-            linkColor="#1d1e2c"
-            iconSource={Assets.icons.ic_shape}
-            label="2500"
-            labelStyle={{color: '#1d1e2c'}}
-          />
-          <Button
-            style={{marginLeft: 38}}
-            link
-            linkColor="#1d1e2c"
-            iconSource={Assets.icons.ic_msg}
-            label="425"
-            labelStyle={{color: '#1d1e2c'}}
-          />
-        </View>
-        <Button
-          link
-          linkColor="#1d1e2c"
-          iconSource={Assets.icons.ic_bookmark}
-        />
-      </View>
-      <View marginT-13>
-        <Text font-28>我的女儿和她的小宠物狗，你们觉得它好看吗? </Text>
-      </View>
-      <View marginT-13>
-        <Text font-20 greyFont>
-          5分钟前
-        </Text>
-      </View>
-    </View>
-  </Card>
-);
-
-const renderFriendList = () => (
-  <FlatList
-    showsHorizontalScrollIndicator={false}
-    horizontal={true}
-    data={user_info}
-    renderItem={user_avatar}
-  />
-);
-
-var user_info = [
-  {
-    size: p2d(112),
-    imageSource: avatar_img,
-    is_friend: false,
-    is_online: true,
-  },
-  {
-    size: p2d(112),
-    imageSource: avatar_img,
-    is_online: true,
-    is_live: true,
-  },
-  {
-    size: p2d(112),
-    imageSource: avatar_img,
-  },
-  {
-    size: p2d(112),
-    imageSource: avatar_img,
-  },
-  {
-    size: p2d(112),
-    imageSource: avatar_img,
-    is_online: true,
-  },
-  {
-    size: p2d(112),
-    imageSource: avatar_img,
-  },
-  {
-    size: p2d(112),
-    imageSource: avatar_img,
-  },
-];
 const Dynamic = ({navigation}) => (
   <SafeAreaView style={styles.container} edges={['top', 'left', 'right']}>
     <StatusBar backgroundColor={Colors.white} barStyle={'dark-content'} />
     <View>
       <FlatList
-        ListHeaderComponent={renderFriendList}
+        ListHeaderComponent={RenderFriendList}
         ListHeaderComponentStyle={styles.frend_list}
         showsVerticalScrollIndicator={false}
-        data={dynamic_info}
-        renderItem={renderDynamicCard}
+        data={write_data}
+        renderItem={RenderWriteCard}
       />
     </View>
   </SafeAreaView>
