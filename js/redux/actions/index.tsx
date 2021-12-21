@@ -16,4 +16,14 @@ const login = (data: object) => (dispatch: Dispatch) => {
   });
 };
 
-export {login};
+const register = (data: object) => (dispatch: Dispatch) => {
+  api.user.addUserInfo(data).then((res: any) => {
+    res.token &&
+      dispatch({
+        type: types.REGISTER,
+        token: res.token,
+      });
+  });
+};
+
+export {login, register};
