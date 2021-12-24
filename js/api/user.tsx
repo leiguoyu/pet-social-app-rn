@@ -16,7 +16,7 @@ updateUserInfo = (data: any) =>
 
 addUserInfo = (data: any) =>
   http.post({
-    url: 'user/info',
+    url: 'https://pet-server-9gjxcs7a1e0a4f33-1307245463.ap-shanghai.app.tcloudbase.com/add_user',
     data: data,
   });
 
@@ -28,7 +28,7 @@ delUserInfo = (data: any) =>
 
 login = (data: any) =>
   http.post({
-    url: 'login',
+    url: 'https://pet-server-9gjxcs7a1e0a4f33-1307245463.ap-shanghai.app.tcloudbase.com/login',
     data: data,
   });
 

@@ -1,9 +1,11 @@
 import React, {useState} from 'react';
+import {connect} from 'react-redux';
 import {StyleSheet, ImageBackground, Alert} from 'react-native';
 import {View, TextField, Text, Button} from 'react-native-ui-lib';
 import {p2d} from '~/js/utils/tools';
+import {register} from '~/js/redux/actions/index';
 
-const SignUpStep2 = ({route, navigation}) => {
+const SignUpStep2 = ({route, navigation, register}) => {
   const {username} = route.params;
 
   const [email, setEmail] = useState('');
@@ -23,10 +25,19 @@ const SignUpStep2 = ({route, navigation}) => {
       Alert.alert('两次密码输入不一致');
       return;
     }
-    return;
-    //  TODO: 调用api
-    // 注册成功
-    navigation.navigate('SignUpStep3');
+    const profileInfo = {
+      name: username,
+      mail: email,
+      password: password,
+    };
+    register(profileInfo).then(res => {
+      if (!res.errno) {
+        // 注册成功
+        navigation.navigate('SignUpComplete');
+      } else {
+        Alert.alert(res.msg);
+      }
+    });
   };
 
   return (
@@ -127,4 +138,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SignUpStep2;
+export default connect(null, {register})(SignUpStep2);

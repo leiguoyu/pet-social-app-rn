@@ -24,7 +24,7 @@ const SignUpComplete = ({navigation}) => (
           label="完善你的个人资料"
           backgroundLightBlue
           onPress={() => {
-            navigation.navigate('Home');
+            navigation.navigate('Login');
           }}
         />
       </View>

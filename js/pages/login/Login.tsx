@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {StyleSheet, ImageBackground} from 'react-native';
+import {StyleSheet, ImageBackground, Alert} from 'react-native';
 import {View, TextField, Text, Button} from 'react-native-ui-lib';
 import {login} from '~/js/redux/actions/index';
 import {connect} from 'react-redux';
@@ -7,6 +7,14 @@ const LoginContainer = ({navigation, login}) => {
   let [user_email, onEmailChangeText] = useState('');
   let [user_pwd, onPwdChangeText] = useState('');
   const GoLogin = () => {
+    if (!user_email) {
+      Alert.alert('请输入邮箱地址！');
+      return;
+    }
+    if (!user_pwd) {
+      Alert.alert('请输入密码！');
+      return;
+    }
     login({
       user_email,
       user_pwd,
