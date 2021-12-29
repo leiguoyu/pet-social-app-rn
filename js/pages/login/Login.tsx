@@ -16,8 +16,8 @@ const LoginContainer = ({navigation, login}) => {
       return;
     }
     login({
-      user_email,
-      user_pwd,
+      mail: user_email,
+      password: user_pwd,
     });
   };
   return (
