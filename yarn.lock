@@ -5668,6 +5668,13 @@ react-native-slider@^0.11.0:
   dependencies:
     prop-types "^15.5.6"
 
+react-native-swiper@^1.6.0:
+  version "1.6.0"
+  resolved "https://registry.nlark.com/react-native-swiper/download/react-native-swiper-1.6.0.tgz#59fdbdf95addee49630312f27077622c27776819"
+  integrity sha1-Wf29+Vrd7kljAxLycHdiLCd3aBk=
+  dependencies:
+    prop-types "^15.5.10"
+
 react-native-text-size@4.0.0-rc.1:
   version "4.0.0-rc.1"
   resolved "https://registry.nlark.com/react-native-text-size/download/react-native-text-size-4.0.0-rc.1.tgz#1e048d345dd6a5a8e1269e0585c1a5948c478da5"

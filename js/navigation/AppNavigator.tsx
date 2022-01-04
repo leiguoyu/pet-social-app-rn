@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
+import AppIntro from '../pages/appIntro/AppIntro';
 import SignUpStep1 from '../pages/register/SignUpStep1';
 import SignUpStep2 from '../pages/register/SignUpStep2';
 import SignUpComplete from '../pages/register/SignUpComplete';
@@ -28,6 +29,13 @@ Assets.loadAssetsGroup('icons', {
 const Stack = createNativeStackNavigator();
 const no_token_page_JSX = (
   <>
+    <Stack.Screen
+      name="AppIntro"
+      component={AppIntro}
+      options={{
+        headerShown: false,
+      }}
+    />
     <Stack.Screen
       name="SignIn"
       component={SignIn}
@@ -167,7 +175,7 @@ const AppNavigator = () => {
     <SafeAreaProvider>
       <NavigationContainer>
         <Stack.Navigator
-          initialRouteName={!user_token ? 'SignIn' : 'Home'}
+          initialRouteName={!user_token ? 'AppIntro' : 'Home'}
           screenOptions={{
             headerShadowVisible: false,
           }}>
