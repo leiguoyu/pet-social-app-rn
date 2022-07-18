@@ -3,32 +3,32 @@ import http from '~/js/utils/http';
 let getUserInfo, updateUserInfo, addUserInfo, delUserInfo, login;
 
 getUserInfo = (data: any) =>
-  http.post({
-    url: 'https://pet-server-9gjxcs7a1e0a4f33-1307245463.ap-shanghai.app.tcloudbase.com/koa-starter/assets/start_carousel',
-    data: data.user_id,
+  http.get({
+    url: '/getUserInfo',
+    data: data,
   });
 
 updateUserInfo = (data: any) =>
-  http.update({
-    url: 'user/info',
+  http.post({
+    url: '/updateUser',
     data: data,
   });
 
 addUserInfo = (data: any) =>
   http.post({
-    url: 'https://pet-server-9gjxcs7a1e0a4f33-1307245463.ap-shanghai.app.tcloudbase.com/add_user',
+    url: '/addUser',
     data: data,
   });
 
 delUserInfo = (data: any) =>
-  http.del({
-    url: 'user/info',
+  http.post({
+    url: '/delUser',
     data: data,
   });
 
 login = (data: any) =>
   http.post({
-    url: 'https://pet-server-9gjxcs7a1e0a4f33-1307245463.ap-shanghai.app.tcloudbase.com/login',
+    url: '/login',
     data: data,
   });
 

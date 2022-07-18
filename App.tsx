@@ -5,9 +5,14 @@ import store from '~/js/redux/store';
 import AppNavigator from '~/js/navigation/AppNavigator';
 import {api} from '~/js/api';
 import './js/config/theme';
-api.user.getUserInfo((data: any) => {
-  console.log(data);
-});
+import '~/js/mock/mock';
+api.user
+  .getUserInfo({
+    user_id: '1111',
+  })
+  .then(data => {
+    console.log(data);
+  });
 
 const App = () => (
   <Provider store={store}>

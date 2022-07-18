@@ -1,6 +1,7 @@
 let queryString: any = require('query-string');
 import {fetchInterceptor} from './fetch_interceptor';
 import {Platform} from 'react-native';
+import {network} from '~/js/utils/net.config';
 
 /**
  * @description: 枚举request请求的method方法
@@ -46,7 +47,7 @@ function get<P>(options: option): Promise<P> {
   }
   try {
     return fetchInterceptor
-      .c_fetch(options.url, {
+      .c_fetch(network.api_url + options.url, {
         method: HttpMethod.get,
         headers: {
           UserAgent: os,
@@ -70,7 +71,7 @@ function post<P>(options: option): Promise<P> {
     body: JSON.stringify(options.data),
   };
   return fetchInterceptor
-    .c_fetch(options.url, fetch_options)
+    .c_fetch(network.api_url + options.url, fetch_options)
     .then<P>(checkStatus)
     .then<P>(parseJSON);
 }
@@ -87,7 +88,7 @@ function del<P>(options: option): Promise<P> {
       UserAgent: os,
     },
   };
-  return fetch(options.url, fetch_options)
+  return fetch(network.api_url + options.url, fetch_options)
     .then<P>(checkStatus)
     .then<P>(parseJSON);
 }
@@ -102,7 +103,7 @@ function update<P>(options: option): Promise<P> {
     },
     body: JSON.stringify(options.data),
   };
-  return fetch(options.url, fetch_options)
+  return fetch(network.api_url + options.url, fetch_options)
     .then<P>(checkStatus)
     .then<P>(parseJSON);
 }

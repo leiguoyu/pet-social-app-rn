@@ -4,8 +4,8 @@ import {View, TextField, Text, Button} from 'react-native-ui-lib';
 import {login} from '~/js/redux/actions/index';
 import {connect} from 'react-redux';
 const LoginContainer = ({navigation, login}) => {
-  let [user_email, onEmailChangeText] = useState('');
-  let [user_pwd, onPwdChangeText] = useState('');
+  let [user_email, onEmailChangeText] = useState('123456@qq.com');
+  let [user_pwd, onPwdChangeText] = useState('123456');
   const GoLogin = () => {
     if (!user_email) {
       Alert.alert('请输入邮箱地址！');
